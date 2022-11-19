@@ -1,0 +1,8 @@
+<div class="container mt-5">
+    <h1>LISTA DE CONTENIDO.</h1>
+    <ul>
+        {{#each places }}
+        <li> <a href="/places/details/{{id}}"> {{ name }} </a></li>
+        {{/each}}
+    </ul>
+</div>
