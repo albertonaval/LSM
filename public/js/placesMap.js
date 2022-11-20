@@ -37,7 +37,10 @@ function renderMap() {
         document.getElementById('myMap'),
         {
             zoom: 16,
-            center: { lat: 40.4466299007422, lng: - 3.6746561949108187 }
+            center: {
+                lat: 40.436055111449235, lng: - 3.716630605587715
+            }
         }
     )
 }
+

@@ -3,6 +3,10 @@ body {
   height: 100vh;
 }
 
+.cardDetails {
+  height: 100vh;
+}
+
 #myMap {
   height: 150px;
 }

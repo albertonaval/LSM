@@ -11,8 +11,29 @@ router.get('/list', (req, res) => {
 
 router.get('/discos-list', (req, res) => {
     Place
-        .find()
-        .then(places => res.render('places/discos-list', { places }))
+        .find({ type: 'Disco' })
+        .then(discos => res.render('places/discos-list', { discos }))
+        .catch(err => console.log(err))
+})
+
+router.get('/events-list', (req, res) => {
+    Place
+        .find({ type: 'Event' })
+        .then(events => res.render('places/events-list', { events }))
+        .catch(err => console.log(err))
+})
+
+router.get('/restaurants-list', (req, res) => {
+    Place
+        .find({ type: 'Restaurant' })
+        .then(restaurant => res.render('places/events-list', { restaurant }))
+        .catch(err => console.log(err))
+})
+
+router.get('/hotels-list', (req, res) => {
+    Place
+        .find({ type: 'Hotel' })
+        .then(hotels => res.render('places/events-list', { hotels }))
         .catch(err => console.log(err))
 })
 
@@ -21,14 +42,14 @@ router.get("/create", (req, res) => res.render('places/create'))
 
 router.post("/create", (req, res) => {
 
-    const { name, description, rating, owner, latitude, longitude } = req.body
+    const { name, description, type, rating, owner, latitude, longitude } = req.body
     const location = {
         type: 'Point',
         coordinates: [latitude, longitude]
     }
 
     Place
-        .create({ name, description, rating, owner, location })
+        .create({ name, description, type, rating, owner, location })
         .then(() => res.redirect('/places/list'))
         .catch(err => console.log(err))
 })

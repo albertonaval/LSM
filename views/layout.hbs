@@ -20,30 +20,29 @@
          <a class="navbar-brand" href="/">{{appTitle}}</a>
          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
             aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon">{{appTitle}}</span>
          </button>
 
          <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                <li class="nav-item">
-                  <a class="nav-link" href="/disco">Discotecas</a>
+                  <a class="nav-link" href="/places/discos-list">Discotecas</a>
                </li>
                <li class="nav-item">
-                  <a class="nav-link" href="/events">Eventos</a>
+                  <a class="nav-link" href="/places/events-list">Eventos</a>
                </li>
                <li class="nav-item">
-                  <a class="nav-link" href="/restaurants">Restaurantes</a>
+                  <a class="nav-link" href="/places/restaurants-list">Restaurantes</a>
                </li>
                <li class="nav-item">
-                  <a class="nav-link" href="/hotels">Hoteles</a>
+                  <a class="nav-link" href="/places/hotels-list">Hoteles</a>
                </li>
             </ul>
-            <span class="navbar-text ">
-               <a href="/auth/logout">LogOut</a>
-               <a href="/auth/login">Log in</a>
-               <a href="/auth/signup">Sign up</a>
-            </span>
+            <div class="btn-group" role="group" aria-label="Basic example">
+               <a href="/auth/login" class="btn btn-success">Log In</a>
+               <a href="/auth/logout" class="btn btn-danger">Log Out</a>
+               <a href="/auth/signup" class="btn btn-dark">Sign Up</a>
+            </div>
          </div>
       </div>
    </nav>

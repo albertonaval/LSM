@@ -10,7 +10,6 @@ const placesSchema = new Schema(
 
         type: {
             type: String,
-            enum: ['Hotel', 'Restaurant', 'Disco', 'Event'],
         },
 
         description: {
