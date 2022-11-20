@@ -25,23 +25,25 @@
                     <input type="text" class="form-control" id="description" name="description">
                 </div>
                 <div class="mb-3">
+                    <label for="rate" class="form-label">Puntuación</label>
+                    <input type="number" class="form-control" id="rating" name="rating" placeholder="0-5" min="0"
+                        max="5">
+                </div>
+                <div class="mb-3">
+                    <label for="author" class="form-label">Autor/a</label>
+                    <input type="text" class="form-control" id="author" name="author">
+                </div>
+                {{!-- <div class="mb-3">
+                    <label for="author" class="form-label">Imagen</label>
+                    <input type="text" class="form-control" id="imageUrl" name="imageUrl">
+                </div> --}}
+
+                <div class="mb-3">
                     <label for="" class="form-label">Coordenadas</label>
                     <input type="text" class="form-control" id="latitude" name="latitude" placeholder="Latitud">
                     <br>
                     <input type="text" class="form-control" id="longitude" name="longitude" placeholder="Longitud">
                 </div>
-                {{!-- <div class="mb-3">
-                    <label for="" class="form-label"></label>
-                    <input type="text" class="form-control" id="" name="">
-                </div> --}}
-                {{!-- <div class="mb-3">
-                    <label for="author" class="form-label">Autor/a</label>
-                    <input type="text" class="form-control" id="author" name="author">
-                </div> --}}
-                {{!-- <div class="mb-3">
-                    <label for="rate" class="form-label">Puntuación</label>
-                    <input type="number" class="form-control" id="rate" name="rating">
-                </div> --}}
                 <div class="d-grid">
                     <button type="submit" class="btn btn-dark">Crear</button>
                 </div>

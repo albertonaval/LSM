@@ -1,8 +1,40 @@
-<div class="container mt-5">
-    <h1>LISTA DE CONTENIDO.</h1>
-    <ul>
-        {{#each places }}
-        <li> <a href="/places/details/{{id}}"> {{ name }} </a></li>
-        {{/each}}
-    </ul>
+<div class="container mt-5 text-center">
+    <h1> LISTA DE CONTENIDO</h1>
+    <div class="container d-flex">
+
+        <div class="card mt-3 me-3" style="width: 18rem;">
+            <img src="https://www.ondoan.com/img/2019/07/riu-garoe.png" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Hoteles</h5>
+                <p class="card-text">Mejores hoteles de la zona</p>
+                <a href="/places/hotels-list" class="btn btn-dark">Acceder</a>
+            </div>
+        </div>
+        <div class="card mt-3 me-3" style="width: 18rem;">
+            <img src="http://fabrikclub.com/wp-content/uploads/2020/03/main_terraza.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Discotecas</h5>
+                <p class="card-text">Mejores discotecas de la zona</p>
+                <a href="/places/discos-list" class="btn btn-dark">Acceder</a>
+            </div>
+        </div>
+        <div class="card mt-3 me-3" style="width: 18rem;">
+            <img src="https://e7.pngegg.com/pngimages/975/518/png-clipart-musician-concert-music-video-music-festival-others-people-stage.png"
+                class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Eventos</h5>
+                <p class="card-text">Mejores eventos de la zona</p>
+                <a href="/places/events-list" class="btn btn-dark">Acceder</a>
+            </div>
+        </div>
+        <div class="card mt-3" style="width: 18rem;">
+            <img src="https://www.teveoenmadrid.com/wp-content/uploads/2022/04/restaurante-quinto-elemento-planta-siete-restaurante-te-veo-en-madrid.jpg"
+                class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Restaurantes</h5>
+                <p class="card-text">Mejores restaurantes de la zona</p>
+                <a href="/places/restaurants-list" class="btn btn-dark">Acceder</a>
+            </div>
+        </div>
+    </div>
 </div>
