@@ -2,7 +2,6 @@ let myMap
 let id
 
 function initMap() {
-    renderMap()
     getPathId()
     getPlaces()
 }
@@ -17,14 +16,18 @@ function getPlaces() {
 
     axios
         .get(`/api/places/${id[4]}`)
-        .then(response => setMarkers(response.data))
+        .then(response => {
+            //console.log('DATA', response.data)
+            renderMap(response.data)
+        })
         .catch(err => console.log(err))
 
 }
 
 function setMarkers(place) {
-    const lat = place.location.coordinates[0]
-    const lng = place.location.coordinates[1]
+    //console.log('setMarkers')
+    let lat = place.location.coordinates[0]
+    let lng = place.location.coordinates[1]
 
     new google.maps.Marker({
         map: myMap,
@@ -35,18 +38,22 @@ function setMarkers(place) {
 
 
 function renderMap(place) {
+    // console.log('renderMap')
+    // console.log(place)
+    let lat = place.location.coordinates[0]
+    let lng = place.location.coordinates[1]
 
-    const lat = place.location.coordinates[0]
-    const lng = place.location.coordinates[1]
     myMap = new google.maps.Map(
         document.getElementById('myMap'),
         {
-            zoom: 16,
+            zoom: 14,
             center: {
-                lat, lng
+                lat: lat, lng: lng
             }
         }
     )
+
+    setMarkers(place)
 }
 
 

@@ -2,7 +2,6 @@
 
     <div class="row justify-content-center">
         <div class="col-md-6">
-
             <h1>Editar {{place.name}}</h1>
             <hr>
             <form action="/places/edit/{{place._id}}" method="POST">
@@ -14,25 +13,23 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="mb-3">
-                            <label for="weapon" class="form-label">Descripcion</label>
-                            <input type="text" class="form-control" id="weapon" name="weapon"
-                                value="{{place.description}}">
-                        </div>
+                        <label for="occupation" class="form-label">Rating</label>
+                        <input type="text" class="form-control" id="occupation" name="occupation"
+                            value="{{place.rating}}">
                     </div>
+                </div>
+                <div class="mb-3">
+                    <label for="weapon" class="form-label">Descripcion</label>
+                    <input type="text" class="form-control" id="weapon" name="weapon" value="{{place.description}}">
                 </div>
 
                 <div class="mb-3">
-                    <label for="occupation" class="form-label">Rating</label>
-                    <input type="text" class="form-control" id="occupation" name="occupation" value="{{place.rating}}">
-                </div>
-                <div class="mb-3">
                     <label for="" class="form-label">Coordenadas</label>
                     <input type="text" class="form-control" id="latitude" name="latitude" placeholder="Latitud"
-                        value="{{place.location.coordinate[0]}}">
+                        value="{{place.location.coordinates.[0]}}">
                     <br>
                     <input type="text" class="form-control" id="longitude" name="longitude" placeholder="Longitud"
-                        value="{{place.location.coordinate[1]}}">
+                        value="{{place.location.coordinates.[1]}}">
                 </div>
 
                 <div class="d-grid mt-5">
@@ -41,6 +38,7 @@
             </form>
         </div>
     </div>
+</div>
 
 
 </div>
