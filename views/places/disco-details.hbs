@@ -9,13 +9,15 @@
                     <h5 class="card-title">{{place.name}}</h5>
                     <p class="card-text">{{place.description}}</p>
                     <p class="card-text">Rating: {{place.rating}}</p>
-                    <figure id="{{_id}}"></figure>
+                    <figure id="myMap"></figure>
                     {{#if isAdmin }}
                     <a href="/places/edit/{{place._id}}" class="btn btn-warning">Editar Discoteca</a>
                     <form action="/places/delete/{{place._id}}" method="POST" style="display: inline">
-                        <input type="submit" value="Eliminar libro" class="btn btn-danger">
+                        <input type="submit" value="Eliminar lugar" class="btn btn-danger">
                     </form>
                     {{/if}}
+
+                    <a href="/" class="btn btn-dark">Volver al inicio</a>
                 </div>
             </div>
         </div>
@@ -25,6 +27,4 @@
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbBJPvYIaR5ozIx_0-uWiGeO9cK4IxHww&callback=initMap">
             </script>
     </div>
-
-
 </div>

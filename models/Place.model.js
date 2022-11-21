@@ -24,7 +24,7 @@ const placesSchema = new Schema(
 
         owner: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'username'
+            ref: 'User'
         },
 
         imageUrl: {
@@ -43,6 +43,8 @@ const placesSchema = new Schema(
         timestamps: true
     },
 )
+
+placesSchema.index({ location: '2dsphere' })
 
 const Place = model("Place", placesSchema)
 module.exports = Place
