@@ -117,11 +117,7 @@ router.post("/create", (req, res) => {
 })
 
 //Edit
-<<<<<<< HEAD
-router.get('/edit/:place_id', checkRoles('ADMIN', 'CREATOR'), (req, res) => {
-=======
 router.get('/edit/:id', checkRoles('ADMIN', 'CREATOR'), (req, res) => {
->>>>>>> 500c07331281df097f482842dbb1c33edf4604d7
 
     const { id: place_id } = req.params
 
@@ -137,9 +133,6 @@ router.get('/edit/:id', checkRoles('ADMIN', 'CREATOR'), (req, res) => {
         .catch(err => console.log(err))
 })
 
-<<<<<<< HEAD
-router.post('/edit', (req, res) => {
-=======
 router.post('/edit/:id', (req, res) => {
 
     const { id: disco_id } = req.params
@@ -149,7 +142,6 @@ router.post('/edit/:id', (req, res) => {
         type: 'Point',
         coordinates: [latitude, longitude]
     }
->>>>>>> 500c07331281df097f482842dbb1c33edf4604d7
 
 
     Place
