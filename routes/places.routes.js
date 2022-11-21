@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const Place = require('../models/Places.model')
 
-
+//READ
 router.get('/list', (req, res) => {
     Place
         .find()
@@ -26,16 +26,32 @@ router.get('/events-list', (req, res) => {
 router.get('/restaurants-list', (req, res) => {
     Place
         .find({ type: 'Restaurant' })
-        .then(restaurant => res.render('places/events-list', { restaurant }))
+        .then(restaurant => res.render('places/restaurants-list', { restaurant }))
         .catch(err => console.log(err))
 })
 
 router.get('/hotels-list', (req, res) => {
     Place
         .find({ type: 'Hotel' })
-        .then(hotels => res.render('places/events-list', { hotels }))
+        .then(hotels => res.render('places/hotels-list', { hotels }))
         .catch(err => console.log(err))
 })
+
+
+router.get('/discos-list/details/:id', (req, res) => {
+    const { id: disco_id } = req.params
+
+    Place
+        .findById(disco_id)
+        .then((place) => {
+            res.render('places/disco-details', place)
+        })
+        .catch(err => console.log(err))
+})
+
+
+
+//CREATE
 
 
 router.get("/create", (req, res) => res.render('places/create'))
@@ -54,16 +70,7 @@ router.post("/create", (req, res) => {
         .catch(err => console.log(err))
 })
 
-router.get('/discos-list/details/:id', (req, res) => {
-    const { id: disco_id } = req.params
 
-    Place
-        .findById(disco_id)
-        .then((place) => {
-            res.render('places/disco-details', place)
-        })
-        .catch(err => console.log(err))
-})
 
 
 module.exports = router
