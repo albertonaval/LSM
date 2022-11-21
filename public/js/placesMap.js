@@ -33,17 +33,20 @@ function setMarkers(place) {
     })
 }
 
-function renderMap() {
 
+function renderMap(place) {
+
+    const lat = place.location.coordinates[0]
+    const lng = place.location.coordinates[1]
     myMap = new google.maps.Map(
         document.getElementById('myMap'),
         {
             zoom: 16,
-            center: { lat: 40.41670475287826, lng: - 3.7042989147857437 }
+            center: {
+                lat, lng
+            }
         }
     )
 }
-
-
 
 

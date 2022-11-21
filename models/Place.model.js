@@ -15,7 +15,7 @@ const placesSchema = new Schema(
         description: {
             type: String,
             minlength: 2,
-            maxlength: 150,
+            maxlength: 500,
         },
 
         rating: {
