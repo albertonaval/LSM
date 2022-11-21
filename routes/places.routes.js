@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const Place = require('../models/Places.model')
+const Place = require('../models/Place.model')
 
 //READ
 router.get('/list', (req, res) => {

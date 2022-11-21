@@ -7,7 +7,7 @@ const reviewSchema = new Schema(
         },
         owner: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'username'
+            ref: 'USER'
 
         }
     },

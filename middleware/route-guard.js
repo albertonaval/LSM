@@ -1,5 +1,6 @@
 function isLoggedIn(req, res, next) {
     if (req.session.currentUser) {
+        req.app.locals.username = req.session.currentUser.username
         next()
     } else {
         res.render('auth/login', { errorMessage: 'Inicia sesión para acceder' })
@@ -9,6 +10,7 @@ function isLoggedIn(req, res, next) {
 function isLoggedOut(req, res, next) {
     if (!req.session.currentUser) {
         next()
+        req.app.locals.username = null
     } else {
         res.redirect('/profile')
     }

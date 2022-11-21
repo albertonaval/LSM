@@ -31,16 +31,23 @@ function setMarkers(places) {
 }
 
 
-function renderMap() {
+function renderMap(places) {
 
-    myMap = new google.maps.Map(
-        document.getElementById('myMap'),
-        {
-            zoom: 16,
-            center: {
-                lat: 40.436055111449235, lng: - 3.716630605587715
+    places.forEach(elm => {
+
+        const lat = elm.location.coordinates[0]
+        const lng = elm.location.coordinates[1]
+        const id = elm._id
+        myMap = new google.maps.Map(
+            document.getElementById(_id),
+            {
+                zoom: 16,
+                center: {
+                    lat, lng
+                }
             }
-        }
-    )
+        )
+    })
 }
+
 
