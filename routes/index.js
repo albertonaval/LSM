@@ -9,7 +9,6 @@ module.exports = app => {
 
 
 
-    //app.use("/places", require("./maps.routes"))
 
 }
 

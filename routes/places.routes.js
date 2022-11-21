@@ -132,9 +132,9 @@ router.post("/create", (req, res) => {
 })
 
 //Edit
-router.get('/lugar/editar/:place_id', checkRoles('ADMIN', 'CREATOR'), (req, res) => {
+router.get('/edit/:id', checkRoles('ADMIN', 'CREATOR'), (req, res) => {
 
-    const { place_id } = req.params
+    const { id: place_id } = req.params
 
     Place
         .findById(place_id)
@@ -148,14 +148,20 @@ router.get('/lugar/editar/:place_id', checkRoles('ADMIN', 'CREATOR'), (req, res)
         .catch(err => console.log(err))
 })
 
-router.post('/lugar/editar', (req, res) => {
+router.post('/edit/:id', (req, res) => {
 
-    const { name, description, location, rating } = req.body
-    const { place_id } = req.query
+    const { id: disco_id } = req.params
+
+    const { name, description, rating, latitude, longitude } = req.body
+    const location = {
+        type: 'Point',
+        coordinates: [latitude, longitude]
+    }
+
 
     Place
-        .findByIdAndUpdate(place_id, { name, location, description, rating })
-        .then(() => res.redirect(`/places/detail/${place_id}`))
+        .findByIdAndUpdate(disco_id, { name, location, description, rating })
+        .then(() => res.redirect('/places/discos-list'))
         .catch(err => console.log(err))
 })
 
