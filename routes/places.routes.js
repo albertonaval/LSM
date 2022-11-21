@@ -1,11 +1,17 @@
 const router = require('express').Router()
+const { checkRoles } = require('../middleware/route-guard')
 const Place = require('../models/Place.model')
 
 //READ
-router.get('/list', (req, res) => {
+router.get('/list', checkRoles('ADMIN'), (req, res) => {
+
     Place
         .find()
-        .then(places => res.render('places/list', { places }))
+        .then(places => res.render('places/list', {
+            places,
+            isAdmin: req.session.currentUser.role === 'ADMIN',
+
+        }))
         .catch(err => console.log(err))
 })
 
@@ -38,13 +44,16 @@ router.get('/hotels-list', (req, res) => {
 })
 
 
-router.get('/discos-list/details/:id', (req, res) => {
+router.get('/discos-list/details/:id', checkRoles('ADMIN', 'CREATOR'), (req, res) => {
     const { id: disco_id } = req.params
 
     Place
         .findById(disco_id)
         .then((place) => {
-            res.render('places/disco-details', place)
+            res.render('places/disco-details', {
+                place, isAdmin: req.session.currentUser.role === 'ADMIN',
+                isCreator: req.session.currentUser.role === 'CREATOR',
+            })
         })
         .catch(err => console.log(err))
 })
@@ -70,7 +79,32 @@ router.post("/create", (req, res) => {
         .catch(err => console.log(err))
 })
 
+//Edit
+router.get('/lugar/editar/:place_id', checkRoles('ADMIN', 'CREATOR'), (req, res) => {
 
+    const { place_id } = req.params
 
+    Place
+        .findById(place_id)
+        .then(place => {
+            res.render('places/edit', {
+                place,
+                isAdmin: req.session.currentUser.role === 'ADMIN',
+                isCreator: req.session.currentUser.role === 'CREATOR',
+            })
+        })
+        .catch(err => console.log(err))
+})
+
+router.post('/lugar/editar', (req, res) => {
+
+    const { name, description, location, rating } = req.body
+    const { place_id } = req.query
+
+    Place
+        .findByIdAndUpdate(place_id, { name, location, description, rating })
+        .then(() => res.redirect(`/places/detail/${place_id}`))
+        .catch(err => console.log(err))
+})
 
 module.exports = router

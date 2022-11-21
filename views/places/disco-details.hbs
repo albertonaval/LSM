@@ -2,14 +2,20 @@
     <div class="card text-center" style="max-width: 540px">
         <div class="row g-0 align-items-center">
             <div class="col-md-4">
-                <img src={{imageUrl}} class="img-fluid rounded-start">
+                <img src={{place.imageUrl}} class="img-fluid rounded-start">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title">{{name}}</h5>
-                    <p class="card-text">{{description}}</p>
-                    <p class="card-text">Rating: {{rating}}</p>
+                    <h5 class="card-title">{{place.name}}</h5>
+                    <p class="card-text">{{place.description}}</p>
+                    <p class="card-text">Rating: {{place.rating}}</p>
                     <figure id="{{_id}}"></figure>
+                    {{#if isAdmin }}
+                    <a href="/places/edit/{{place._id}}" class="btn btn-warning">Editar Discoteca</a>
+                    <form action="/places/delete/{{place._id}}" method="POST" style="display: inline">
+                        <input type="submit" value="Eliminar libro" class="btn btn-danger">
+                    </form>
+                    {{/if}}
                 </div>
             </div>
         </div>
@@ -19,4 +25,6 @@
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbBJPvYIaR5ozIx_0-uWiGeO9cK4IxHww&callback=initMap">
             </script>
     </div>
+
+
 </div>

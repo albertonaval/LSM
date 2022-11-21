@@ -46,6 +46,7 @@ router.post('/login', isLoggedOut, (req, res) => {
                 res.render('auth/login', { errorMessage: 'Contraseña incorrecta' })
                 return
             }
+
             req.session.currentUser = user
             res.redirect('/profile')
         })

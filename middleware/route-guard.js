@@ -17,10 +17,11 @@ function isLoggedOut(req, res, next) {
 }
 
 const checkRoles = (...rolesToCheck) => (req, res, next) => {
+    console.log(req.session.currentUser.role)
     if (rolesToCheck.includes(req.session.currentUser.role)) {
         next()
     } else {
-        res.render('auth/login', { errorMessage: `No tienes permisos de ${roleToCheck}` })
+        res.render('auth/login', { errorMessage: `No tienes permisos de ${rolesToCheck}` })
     }
 }
 
