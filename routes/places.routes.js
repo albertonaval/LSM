@@ -59,12 +59,7 @@ router.get('/discos-list/details/:id', checkRoles('ADMIN', 'CREATOR'), (req, res
         .catch(err => console.log(err))
 })
 
-router.get('/events-list', (req, res) => {
-    Place
-        .find({ type: 'Event' })
-        .then(events => res.render('places/events-list', { events }))
-        .catch(err => console.log(err))
-})
+
 
 router.get('/events-list/details/:id', (req, res) => {
     const { id: event_id } = req.params
@@ -75,12 +70,7 @@ router.get('/events-list/details/:id', (req, res) => {
         .catch(err => console.log(err))
 })
 
-router.get('/restaurants-list', (req, res) => {
-    Place
-        .find({ type: 'Restaurant' })
-        .then(restaurant => res.render('places/restaurants-list', { restaurant }))
-        .catch(err => console.log(err))
-})
+
 
 router.get('/restaurants-list/details/:id', (req, res) => {
     const { id: restaurant_id } = req.params
@@ -91,12 +81,7 @@ router.get('/restaurants-list/details/:id', (req, res) => {
         .catch(err => console.log(err))
 })
 
-router.get('/hotels-list', (req, res) => {
-    Place
-        .find({ type: 'Hotel' })
-        .then(hotels => res.render('places/hotels-list', { hotels }))
-        .catch(err => console.log(err))
-})
+
 
 router.get('/hotels-list/details/:id', (req, res) => {
     const { id: hotel_id } = req.params
@@ -148,7 +133,7 @@ router.get('/:id/edit', checkRoles('ADMIN', 'CREATOR'), (req, res) => {
         .catch(err => console.log(err))
 })
 
-router.post('/:id/edit', (req, res) => {
+router.post('/edit/:id', (req, res) => {
 
     const { id: place_id } = req.params
 
@@ -157,6 +142,7 @@ router.post('/:id/edit', (req, res) => {
         type: 'Point',
         coordinates: [latitude, longitude]
     }
+>>>>>>> 500c07331281df097f482842dbb1c33edf4604d7
 
 
     Place
