@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const Place = require('../models/Places.model')
+const Place = require('../models/Place.model')
 
 //READ
 router.get('/list', (req, res) => {
@@ -16,28 +16,6 @@ router.get('/discos-list', (req, res) => {
         .catch(err => console.log(err))
 })
 
-router.get('/events-list', (req, res) => {
-    Place
-        .find({ type: 'Event' })
-        .then(events => res.render('places/events-list', { events }))
-        .catch(err => console.log(err))
-})
-
-router.get('/restaurants-list', (req, res) => {
-    Place
-        .find({ type: 'Restaurant' })
-        .then(restaurant => res.render('places/restaurants-list', { restaurant }))
-        .catch(err => console.log(err))
-})
-
-router.get('/hotels-list', (req, res) => {
-    Place
-        .find({ type: 'Hotel' })
-        .then(hotels => res.render('places/hotels-list', { hotels }))
-        .catch(err => console.log(err))
-})
-
-
 router.get('/discos-list/details/:id', (req, res) => {
     const { id: disco_id } = req.params
 
@@ -48,6 +26,57 @@ router.get('/discos-list/details/:id', (req, res) => {
         })
         .catch(err => console.log(err))
 })
+
+router.get('/events-list', (req, res) => {
+    Place
+        .find({ type: 'Event' })
+        .then(events => res.render('places/events-list', { events }))
+        .catch(err => console.log(err))
+})
+
+router.get('/events-list/details/:id', (req, res) => {
+    const { id: event_id } = req.params
+
+    Place
+        .findById(event_id)
+        .then((event) => res.render('places/event-details', event))
+        .catch(err => console.log(err))
+})
+
+router.get('/restaurants-list', (req, res) => {
+    Place
+        .find({ type: 'Restaurant' })
+        .then(restaurant => res.render('places/restaurants-list', { restaurant }))
+        .catch(err => console.log(err))
+})
+
+router.get('/restaurants-list/details/:id', (req, res) => {
+    const { id: restaurant_id } = req.params
+
+    Place
+        .findById(restaurant_id)
+        .then((restaurant) => res.render('places/event-details', restaurant))
+        .catch(err => console.log(err))
+})
+
+router.get('/hotels-list', (req, res) => {
+    Place
+        .find({ type: 'Hotel' })
+        .then(hotels => res.render('places/hotels-list', { hotels }))
+        .catch(err => console.log(err))
+})
+
+router.get('/hotels-list/details/:id', (req, res) => {
+    const { id: hotel_id } = req.params
+
+    Place
+        .findById(hotel_id)
+        .then((hotel) => res.render('places/hotel-details', hotel))
+        .catch(err => console.log(err))
+})
+
+
+
 
 
 

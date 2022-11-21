@@ -4,52 +4,52 @@
 
 HTTP | PATH | DESCRIPTION | JSON
 ------ | ------ | ------ |  ------
-GET    | /   |  INDEX |  NO
-GET   | /RESTAURANTS/LIST   |  LIST |  NO
-GET   | /HOTELS/LIST  |  LIST |  NO
-GET   | /DISCO/LIST   |  LIST |  NO
-GET   | /EVENTS/LIST   |  LIST  |  NO
-GET   | /RESTAURANTS/CREATE   |  CREATE  |  NO
-POST  | /RESTAURANTS/CREATE   |  CREATE  |  NO
-GET   | /RESTAURANTS/LIST/:Id   |  DETAILS  |  NO
-GET   | /RESTAURANTS/:Id/EDIT  |  EDIT |  NO
-POST  | /RESTAURANTS/:Id/EDIT  |  EDIT |  NO
-POST  | /RESTAURANTS/:Id/DELETE  |  DELETE |  NO
-GET   | /HOTELS/CREATE   |  CREATE  |  NO
-POST  | /HOTELS/CREATE   |  CREATE  |  NO
-GET   | /HOTELS/LIST/:Id   |  DETAILS  |  NO
-GET   | /HOTELS/:Id/EDIT  |  EDIT |  NO
-POST  | /HOTELS/:Id/EDIT  |  EDIT |  NO
-POST  | /HOTELS/:Id/DELETE  |  DELETE |  NO
-GET   | /DISCO/CREATE   |  CREATE  |  NO
-POST  | /DISCO/CREATE   |  CREATE  |  NO
-GET   | /DISCO/LIST/:Id   |  DETAILS  |  NO
-GET   | /DISCO/:Id/EDIT  |  EDIT |  NO
-POST  | /DISCO/:Id/EDIT  |  EDIT |  NO
-POST  | /DISCO/:Id/DELETE  |  DELETE |  NO
-GET   | /EVENTS/CREATE   |  CREATE  |  NO
-POST  | /EVENTS/CREATE   |  CREATE  |  NO
-GET   | /EVENTS/LIST/:Id   |  DETAILS  |  NO
-GET   | /EVENTS/:Id/EDIT  |  EDIT |  NO
-POST  | /EVENTS:Id/EDIT  |  EDIT |  NO
-POST  | /EVENTS:Id/DELETE  |  DELETE |  NO
+GET    | /   |  Index Page |  NO
+GET   | /restaurants/list   |  Restaurants List |  NO
+GET   | /hotel/list  |  Hotel list |  NO
+GET   | /disco/list  |  Discos list |  NO
+GET   | /events/LIST   |  Events list  |  NO
+GET   | /restaurants/create   |  Create Restaurants from render |  NO
+POST  | /restaurants/create   |  Create Restaurants from handler  |  NO
+GET   | /restaurants/list/:id   |  Restaurant details  |  NO
+GET   | /restaurants/:id/edit  |  Edit Restaurants from render |  NO
+POST  | /restaurants/:id/edit  |  Edit Restaurants from handler |  NO
+POST  | /restaurants/:id/delete  |  Delete Restaurants |  NO
+GET   | /hotels/create   |  Create Hotel form render  |  NO
+POST  | /hotels/create   |  Create Hotel from handler  |  NO
+GET   | /hotels/list/:id   |  Hotel Details  |  NO
+GET   | /hotels/:id/edit  |  Edit Hotel from render |  NO
+POST  | /hotels/:id/edit  |  Edit Hotel from handler |  NO
+POST  | /hotels/:id/delete  |  Delete Hotel |  NO
+GET   | /DISCO/create   |  Create Disco from render  |  NO
+POST  | /disco/create   |  Create Disco from handler  |  NO
+GET   | /disco/list/:id   |  Disco Details  |  NO
+GET   | /disco/:id/edit  |  Edit Disco from render |  NO
+POST  | /disco/:id/edit  |  Edit Disco from handler |  NO
+POST  | /disco/:id/delete  |  Delete Disco|  NO
+GET   | /events/create   |  Create Events from handler  |  NO
+POST  | /events/create   |  Create Events from handler  |  NO
+GET   | /events/list/:id   |  Event Details  |  NO
+GET   | /events/:id/edit  |  Edit Event from render |  NO
+POST  | /events:id/edit  |  Edit Event from handler |  NO
+POST  | /events:id/delete  |  Delete Event |  NO
 
 <br>
 <hr>
 
 HTTP | PATH | DESCRIPTION | JSON
 ------ | ------ | ------ |  ------
-GET   | /USER/:Id  |  PROFILE  |  NO
-GET   | /CREATOR/:Id  |  PROFILE  |  NO
-GET   | /ADMIN/:Id  |  PROFILE  |  NO
+GET   | /user/:id  |  Profile  |  NO
+GET   | /creator/:id  |  Profile  |  NO
+GET   | /admin/:id  |  Profile  |  NO
 
 <hr>
 <br>
 
 HTTP | PATH | DESCRIPTION | JSON
 ------ | ------ | ------ |  ------
-GET   | /API/MAPS |  MAPS  |  SI
-GET   | /API/TICKETMASTER |  EVENTS  |  SI
+GET   | /api/maps |  maps  |  Si
+GET   | /api/ticketmaster |  events  |  Si
 
 <hr>
 <br>
@@ -64,7 +64,7 @@ name: {
 <hr>
 type: {
     type: String
-    enum: ['Hotel', 'Restaurant', 'Disco', 'Event']
+    enum: ['Hotel', 'Restaurant', 'disco', 'Event']
 }
 <hr>
 description: {
