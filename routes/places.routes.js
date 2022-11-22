@@ -1,6 +1,8 @@
 const router = require('express').Router()
 const { checkRoles } = require('../middleware/route-guard')
 const Place = require('../models/Place.model')
+const ticketmasterApi = require('./../services/api.service')
+const api = new ticketmasterApi()
 
 //READ
 router.get('/list', checkRoles('ADMIN'), (req, res) => {
@@ -23,9 +25,12 @@ router.get('/discos-list', (req, res) => {
 })
 
 router.get('/events-list', (req, res) => {
-    Place
-        .find({ type: 'Event' })
-        .then(events => res.render('places/events-list', { events }))
+
+    api
+        .getAllEvents()
+        .then(response => {
+            res.render('places/events-list', { event: response.data._embedded.events })
+        })
         .catch(err => console.log(err))
 })
 
