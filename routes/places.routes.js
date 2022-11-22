@@ -33,7 +33,7 @@ router.get('/events-list', (req, res) => {
         .then(response => {
             const eventsArr = response.data._embedded.events
             const cleanArr = eventsArr.map(event => {
-                console.log(event._embedded.venues[0].location)
+                // console.log(event._embedded.venues[0].location)
                 return {
                     name: event.name,
                     url: event.url,
@@ -101,7 +101,6 @@ router.get('/details/:id', (req, res) => {
 router.get("/create", (req, res) => res.render('places/create'))
 
 router.post("/create", (req, res) => {
-
     const { name, description, type, rating, owner, latitude, longitude } = req.body
     const location = {
         type: 'Point',
