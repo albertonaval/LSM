@@ -1,8 +1,21 @@
-<div class="container mt-5">
+<div class="container mt-5 ">
     <h1>Eventos</h1>
-    <ul>
-        {{#each events }}
-        <li> <a href="/places/discos-list/details/{{id}}"> {{ name }} </a></li>
-        {{/each}}
-    </ul>
+    <div class="container d-flex">
+        <div class="row">
+            {{#each event}}
+            <div class="card " style="width: 18rem;">
+
+                <img src="" class="card-img-top" alt="...">
+
+                <div class="card-body">
+
+                    <h5 class="card-title ">{{name}} </h5>
+
+                    <a href="{{url}}" class="btn btn-dark">Comprar Entradas</a>
+                </div>
+            </div>
+            {{/each}}
+            {{!-- <li> <a href="/places/discos-list/details/{{id}}"> {{ name }} </a></li> --}}
+        </div>
+    </div>
 </div>
