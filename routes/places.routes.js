@@ -122,7 +122,7 @@ router.post("/create", (req, res) => {
 })
 
 //Edit
-router.get('/:id/edit', checkRoles('ADMIN', 'CREATOR'), (req, res) => {
+router.get('/edit/:id', checkRoles('ADMIN', 'CREATOR'), (req, res) => {
 
     const { id: place_id } = req.params
 
@@ -147,7 +147,6 @@ router.post('/edit/:id', (req, res) => {
         type: 'Point',
         coordinates: [latitude, longitude]
     }
-
 
 
     Place
