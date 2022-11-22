@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const { checkRoles } = require('../middleware/route-guard')
 const Place = require('../models/Place.model')
-const ticketmasterApi = require('./../services/api.service')
+const ticketmasterApi = require('./../services/ticketmaster.service')
 const api = new ticketmasterApi()
 
 //READ
