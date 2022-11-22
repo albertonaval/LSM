@@ -15,7 +15,7 @@ function getPathId() {
 function getPlaces() {
 
     axios
-        .get(`/api/places/${id[4]}`)
+        .get(`/api/places/${id[3]}`)
         .then(response => {
             //console.log('DATA', response.data)
             renderMap(response.data)
