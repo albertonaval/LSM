@@ -4,7 +4,7 @@
         <div class="col-md-6">
             <h1>Editar {{place.name}}</h1>
             <hr>
-            <form action="/places/edit/{{place._id}}" method="POST">
+            <form action="/places/{{place._id}}/edit" method="POST">
                 <div class="row">
                     <div class="col">
                         <div class="mb-3">
@@ -13,18 +13,19 @@
                         </div>
                     </div>
                     <div class="col">
-                        <label for="occupation" class="form-label">Rating</label>
-                        <input type="text" class="form-control" id="occupation" name="occupation"
-                            value="{{place.rating}}">
+                        <label for="rating" class="form-label">Rating</label>
+                        <input type="number" class="form-control" id="rating" name="rating" value="{{place.rating}}"
+                            min="0" max="5" placeholder="0-5">
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="weapon" class="form-label">Descripcion</label>
-                    <input type="text" class="form-control" id="weapon" name="weapon" value="{{place.description}}">
+                    <label for="description" class="form-label">Descripcion</label>
+                    <input type="text" class="form-control" id="description" name="description"
+                        value="{{place.description}}">
                 </div>
 
                 <div class="mb-3">
-                    <label for="" class="form-label">Coordenadas</label>
+                    <label for="coordinates" class="form-label">Coordenadas</label>
                     <input type="text" class="form-control" id="latitude" name="latitude" placeholder="Latitud"
                         value="{{place.location.coordinates.[0]}}">
                     <br>

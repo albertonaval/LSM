@@ -1,3 +1,4 @@
+
 function isLoggedIn(req, res, next) {
     if (req.session.currentUser) {
         req.app.locals.username = req.session.currentUser.username
@@ -17,7 +18,7 @@ function isLoggedOut(req, res, next) {
 }
 
 const checkRoles = (...rolesToCheck) => (req, res, next) => {
-    console.log(req.session.currentUser.role)
+    //console.log(req.session.currentUser.role)
     if (rolesToCheck.includes(req.session.currentUser.role)) {
         next()
     } else {

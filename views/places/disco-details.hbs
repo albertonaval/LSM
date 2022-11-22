@@ -11,7 +11,7 @@
                     <p class="card-text">Rating: {{place.rating}}</p>
                     <figure id="myMap"></figure>
                     {{#if isAdmin }}
-                    <a href="/places/edit/{{place._id}}" class="btn btn-warning">Editar Discoteca</a>
+                    <a href="/places/{{place._id}}/edit" class="btn btn-warning">Editar</a>
                     <form action="/places/delete/{{place._id}}" method="POST" style="display: inline">
                         <input type="submit" value="Eliminar lugar" class="btn btn-danger">
                     </form>

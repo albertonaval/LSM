@@ -6,9 +6,5 @@ module.exports = app => {
     app.use("/places", isLoggedIn, require("./places.routes"))
     app.use("/user", require("./user.routes"))
     app.use("/api", require("./api.routes"))
-
-
-
-
 }
 

@@ -140,7 +140,7 @@ router.get('/edit/:id', checkRoles('ADMIN', 'CREATOR'), (req, res) => {
 
 router.post('/edit/:id', (req, res) => {
 
-    const { id: disco_id } = req.params
+    const { id: place_id } = req.params
 
     const { name, description, rating, latitude, longitude } = req.body
     const location = {
@@ -150,9 +150,10 @@ router.post('/edit/:id', (req, res) => {
 
 
     Place
-        .findByIdAndUpdate(disco_id, { name, location, description, rating })
-        .then(() => res.redirect('/places/discos-list'))
+        .findByIdAndUpdate(place_id, { name, location, description, rating })
+        .then(() => res.redirect(`/places/${place_id}/edit`))
         .catch(err => console.log(err))
 })
 
 module.exports = router
+
