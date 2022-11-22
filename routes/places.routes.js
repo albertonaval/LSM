@@ -54,7 +54,7 @@ router.get('/hotels-list', (req, res) => {
 })
 
 
-router.get('/discos-list/details/:id', checkRoles('ADMIN', 'CREATOR'), (req, res) => {
+router.get('/discos-list/details/:id', (req, res) => {
 
     const { id: disco_id } = req.params
 
@@ -88,7 +88,7 @@ router.get('/restaurants-list/details/:id', (req, res) => {
 
     Place
         .findById(restaurant_id)
-        .then((restaurant) => res.render('places/event-details', restaurant))
+        .then((restaurant) => res.render('places/disco-details', restaurant))
         .catch(err => console.log(err))
 })
 
