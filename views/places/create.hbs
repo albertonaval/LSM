@@ -5,7 +5,7 @@
 
             <h1>Espacio para tu creatividad</h1>
 
-            <form action="/places/create" method="POST">
+            <form action="/places/create" method="POST" enctype="multipart/form-data" class="mt-3">
                 <div class="mb-3">
                     <label for="name" class="form-label">Nombre</label>
                     <input type="text" class="form-control" id="name" name="name">
@@ -33,11 +33,10 @@
                     <label for="author" class="form-label">Autor/a</label>
                     <input type="text" class="form-control" id="author" name="author">
                 </div>
-                {{!-- <div class="mb-3">
-                    <label for="author" class="form-label">Imagen</label>
-                    <input type="text" class="form-control" id="imageUrl" name="imageUrl">
-                </div> --}}
-
+                <div class="mb-3">
+                    <label for="imageUrl" class="form-label">Imagen</label>
+                    <input type="file" class="form-control" id="imageUrl" name="imageField">
+                </div>
                 <div class="mb-3">
                     <label for="" class="form-label">Coordenadas</label>
                     <input type="text" class="form-control" id="latitude" name="latitude" placeholder="Latitud">

@@ -3,6 +3,7 @@ const { checkRoles, isLoggedIn } = require('../middleware/route-guard')
 const Place = require('../models/Place.model')
 const ticketmasterApi = require('./../services/ticketmaster.service')
 const api = new ticketmasterApi()
+const uploader = require('./../config/uploader.config')
 
 //READ
 router.get('/list', checkRoles('ADMIN'), (req, res) => {
@@ -100,16 +101,21 @@ router.get('/details/:id', (req, res) => {
 //CREATE
 router.get("/create", (req, res) => res.render('places/create'))
 
-router.post("/create", (req, res) => {
+router.post("/create", uploader.single('imageField'), (req, res) => {
+
     const { name, description, type, rating, owner, latitude, longitude } = req.body
+    console.log(req.body)
     const location = {
         type: 'Point',
         coordinates: [latitude, longitude]
     }
 
     Place
-        .create({ name, description, type, rating, owner, location })
-        .then(() => res.redirect('/places/list'))
+        .create({ name, description, type, rating, owner, location, imageUrl: req.file.path })
+        .then(() => {
+            console.warn(xhr.responseText)
+            res.redirect('/places/list')
+        })
         .catch(err => console.log(err))
 })
 
