@@ -29,7 +29,12 @@ router.get('/events-list', (req, res) => {
     api
         .getAllEvents()
         .then(response => {
-            res.render('places/events-list', { event: response.data._embedded.events })
+            const eventsArr = response.data._embedded.events
+            const cleanArr = eventsArr.map(event => {
+                return { name: event.name, url: event.url, images: event.images[0].url, location: event._embedded.venues.location }
+            })
+            console.log(cleanArr)
+            res.render('places/events-list', { event: eventsArr })
         })
         .catch(err => console.log(err))
 })
