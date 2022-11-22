@@ -9,10 +9,10 @@ router.get('/list', checkRoles('ADMIN'), (req, res) => {
 
     Place
         .find()
+        .select({ name: 1 })
         .then(places => res.render('places/list', {
             places,
             isAdmin: req.session.currentUser.role === 'ADMIN',
-
         }))
         .catch(err => console.log(err))
 })
@@ -42,7 +42,7 @@ router.get('/events-list', (req, res) => {
 router.get('/restaurants-list', (req, res) => {
     Place
         .find({ type: 'Restaurant' })
-        .then(restaurant => res.render('places/restaurants-list', { restaurant }))
+        .then(restaurants => res.render('places/restaurants-list', { restaurants }))
         .catch(err => console.log(err))
 })
 
@@ -62,7 +62,8 @@ router.get('/discos-list/details/:id', checkRoles('ADMIN', 'CREATOR'), (req, res
         .findById(disco_id)
         .then((place) => {
             res.render('places/disco-details', {
-                place, isAdmin: req.session.currentUser.role === 'ADMIN',
+                place,
+                isAdmin: req.session.currentUser.role === 'ADMIN',
                 isCreator: req.session.currentUser.role === 'CREATOR',
             })
         })
@@ -103,8 +104,6 @@ router.get('/hotels-list/details/:id', (req, res) => {
 })
 
 //CREATE
-
-
 router.get("/create", (req, res) => res.render('places/create'))
 
 router.post("/create", (req, res) => {
