@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { checkRoles } = require('../middleware/route-guard')
+const { checkRoles, isLoggedIn } = require('../middleware/route-guard')
 const Place = require('../models/Place.model')
 const ticketmasterApi = require('./../services/ticketmaster.service')
 const api = new ticketmasterApi()
@@ -26,6 +26,8 @@ router.get('/discos-list', (req, res) => {
 
 router.get('/events-list', (req, res) => {
 
+
+
     api
         .getAllEvents()
         .then(response => {
@@ -38,11 +40,6 @@ router.get('/events-list', (req, res) => {
         })
         .catch(err => console.log(err))
 })
-//     Place
-//         .find({ type: 'Event' })
-//         .then(events => res.render('places/events-list', { events }))
-//         .catch(err => console.log(err))
-// })
 
 router.get('/restaurants-list', (req, res) => {
     Place
@@ -58,15 +55,16 @@ router.get('/hotels-list', (req, res) => {
         .catch(err => console.log(err))
 })
 
+//DETAILS
 
-router.get('/discos-list/details/:id', (req, res) => {
+router.get('/details/:id', (req, res) => {
 
     const { id: disco_id } = req.params
 
     Place
         .findById(disco_id)
         .then((place) => {
-            res.render('places/disco-details', {
+            res.render('places/place-details', {
                 place,
                 isAdmin: req.session.currentUser.role === 'ADMIN',
                 isCreator: req.session.currentUser.role === 'CREATOR',
@@ -75,36 +73,21 @@ router.get('/discos-list/details/:id', (req, res) => {
         .catch(err => console.log(err))
 })
 
-
-
-router.get('/events-list/details/:id', (req, res) => {
-    const { id: event_id } = req.params
-
-    Place
-        .findById(event_id)
-        .then((event) => res.render('places/event-details', event))
-        .catch(err => console.log(err))
-})
-
-
-
-router.get('/restaurants-list/details/:id', (req, res) => {
+router.get('/details/:id', (req, res) => {
     const { id: restaurant_id } = req.params
 
     Place
         .findById(restaurant_id)
-        .then((restaurant) => res.render('places/disco-details', restaurant))
+        .then((restaurant) => res.render('places/place-details', restaurant))
         .catch(err => console.log(err))
 })
 
-
-
-router.get('/hotels-list/details/:id', (req, res) => {
+router.get('/details/:id', (req, res) => {
     const { id: hotel_id } = req.params
 
     Place
         .findById(hotel_id)
-        .then((hotel) => res.render('places/hotel-details', hotel))
+        .then((hotel) => res.render('places/place-details', hotel))
         .catch(err => console.log(err))
 })
 
@@ -126,7 +109,7 @@ router.post("/create", (req, res) => {
 })
 
 //Edit
-router.get('/edit/:id', checkRoles('ADMIN', 'CREATOR'), (req, res) => {
+router.get('/:id/edit', checkRoles('ADMIN', 'CREATOR'), (req, res) => {
 
     const { id: place_id } = req.params
 
@@ -142,7 +125,7 @@ router.get('/edit/:id', checkRoles('ADMIN', 'CREATOR'), (req, res) => {
         .catch(err => console.log(err))
 })
 
-router.post('/edit/:id', (req, res) => {
+router.post('/:id/edit', (req, res) => {
 
     const { id: place_id } = req.params
 
@@ -155,9 +138,21 @@ router.post('/edit/:id', (req, res) => {
 
     Place
         .findByIdAndUpdate(place_id, { name, location, description, rating })
-        .then(() => res.redirect(`/places/${place_id}/edit`))
+        .then(() => res.redirect(`/places/details/${place_id}`))
         .catch(err => console.log(err))
 })
 
-module.exports = router
+//Delete
 
+router.post('/:id/delete', (req, res) => {
+
+    const { id: places_id } = req.params
+
+    Place
+        .findByIdAndDelete(places_id)
+        .then(() => res.redirect('/places/list',))
+        .catch(err => consolel.log(err))
+})
+
+
+module.exports = router
