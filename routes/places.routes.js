@@ -31,7 +31,13 @@ router.get('/events-list', (req, res) => {
         .then(response => {
             const eventsArr = response.data._embedded.events
             const cleanArr = eventsArr.map(event => {
-                return { name: event.name, url: event.url, images: event.images[0].url, location: event._embedded.venues.location }
+                console.log(event._embedded.venues[0].location)
+                return {
+                    name: event.name,
+                    url: event.url,
+                    images: event.images[0].url,
+                    location: event._embedded.venues[0].name
+                }
             })
             console.log(cleanArr)
             res.render('places/events-list', { event: eventsArr })
@@ -59,7 +65,7 @@ router.get('/hotels-list', (req, res) => {
 })
 
 
-router.get('/discos-list/details/:id', (req, res) => {
+router.get('/discos-list/details/:id', checkRoles('ADMIN', 'CREATOR'), (req, res) => {
 
     const { id: disco_id } = req.params
 
@@ -93,7 +99,7 @@ router.get('/restaurants-list/details/:id', (req, res) => {
 
     Place
         .findById(restaurant_id)
-        .then((restaurant) => res.render('places/disco-details', restaurant))
+        .then((restaurant) => res.render('places/event-details', restaurant))
         .catch(err => console.log(err))
 })
 
