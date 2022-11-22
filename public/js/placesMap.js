@@ -8,8 +8,8 @@ function initMap() {
 
 
 function getPathId() {
+    // https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
     id = location.pathname.split('/')
-
 }
 
 function getPlaces() {
@@ -48,12 +48,10 @@ function renderMap(place) {
         {
             zoom: 14,
             center: {
-                lat: lat, lng: lng
+                lat, lng
             }
         }
     )
 
     setMarkers(place)
 }
-
-
