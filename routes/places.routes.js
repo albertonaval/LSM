@@ -142,7 +142,7 @@ router.post('/edit/:id', (req, res) => {
         type: 'Point',
         coordinates: [latitude, longitude]
     }
->>>>>>> 500c07331281df097f482842dbb1c33edf4604d7
+
 
 
     Place
