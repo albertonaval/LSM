@@ -2,7 +2,10 @@
     <div class="card text-center" style="max-width: 540px">
         <div class="row g-0 align-items-center">
             <div class="col-md-4">
-                <img src={{place.imageUrl}} class="img-fluid rounded-start">
+                <figure>
+                    <img src={{place.imageUrl}} class="img-fluid rounded-start" alt="{{name}}">
+                    <figcaption>{{name}}</figcaption>
+                </figure>
             </div>
             <div class="col-md-8">
                 <div class="card-body">

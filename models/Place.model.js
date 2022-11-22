@@ -29,7 +29,6 @@ const placesSchema = new Schema(
 
         imageUrl: {
             type: String,
-            default: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.freeiconspng.com%2Fuploads%2Fplaces-icon-5.png'
         },
 
         location: {
