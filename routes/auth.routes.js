@@ -6,9 +6,6 @@ const saltRounds = 10
 const { isLoggedOut } = require('../middleware/route-guard')
 const uploader = require('./../config/uploader.config')
 
-//signup = registrarse
-//login = iniciar sesion
-
 
 router.get('/signup', isLoggedOut, (req, res) => {
     res.render('auth/signUp')
