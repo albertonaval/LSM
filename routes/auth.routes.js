@@ -6,6 +6,9 @@ const saltRounds = 10
 const { isLoggedOut } = require('../middleware/route-guard')
 const uploader = require('./../config/uploader.config')
 
+//signup = registrarse
+//login = iniciar sesion
+
 
 router.get('/signup', isLoggedOut, (req, res) => {
     res.render('auth/signUp')
@@ -27,6 +30,8 @@ router.post('/signup', isLoggedOut, uploader.single('imageField'), (req, res, ne
         .then(() => res.redirect('/auth/login'))
         .catch(err => console.log(err))
 })
+
+
 router.get('/login', isLoggedOut, (req, res) => {
     res.render('auth/login')
 })
@@ -50,7 +55,7 @@ router.post('/login', isLoggedOut, (req, res) => {
             }
 
             req.session.currentUser = user
-            res.render(`user/profile`, user)
+            res.redirect('/user/profile')
         })
         .catch(err => console.log(err))
 })

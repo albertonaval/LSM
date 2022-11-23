@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="container mt-5">
 
     <img src="{{imageUrl}}" class="img-fluid rounded-start" alt="{{name}}">
@@ -6,3 +7,32 @@
     <h1>Perfil: {{username}}</h1>
     <p>{{email}}</p>
 </div>
+=======
+<div class="container">
+    <h1>Bienvenid@, {{user.username}}</h1>
+    <hr>
+    <img src="{{user.profileImg}}">
+    <ul>
+        <li>{{user.description}}</li>
+        <li>{{user.role}}</li>
+    </ul>
+
+
+    {{#if isADMIN}}
+    <a href="/users/profile/{{user._id}}/editar" class="btn btn-outline-warning">Editar Usuario</a>
+    <form action="/users/profile/{{user._id}}/delete" method="POST">
+        <input type="submit" value="Eliminar Usuario" class="btn btn-outline-danger">
+    </form>
+    <form action="/users/profile/{{user._id}}/promotetoTA" method="POST">
+        <input type="submit" value="Convertir a TA" class="btn btn-outline-success">
+    </form>
+    <form action="/users/profile/{{user._id}}/promotetoDEV" method="POST">
+        <input type="submit" value="Convertir a DEV" class="btn btn-outline-success">
+    </form>
+    {{/if}}
+
+    {{#if isTheUser}}
+    <a href="/users/profile/{{user._id}}/editar" class=" btn btn-outline-warning">Editar Perfil</a>
+    {{/if}}
+</div>
+>>>>>>> dev1
