@@ -12,7 +12,7 @@
                     <h5 class="card-title">{{place.name}}</h5>
                     <p class="card-text">{{place.description}}</p>
                     <p class="card-text">Rating: {{place.rating}}</p>
-                    <figure id="myMap"></figure>
+                    <figure id="detailsMap"></figure>
                     {{#if isAdmin }}
                     <a href="/places/{{place._id}}/edit" class="btn btn-warning">Editar</a>
                     <form action="/places/{{place._id}}/delete" method="POST" style="display:inline">

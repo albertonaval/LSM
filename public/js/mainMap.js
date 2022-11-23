@@ -1,18 +1,19 @@
 
 
-const ironhack = {
-    coords: { lat: 41.39770923787243, lng: 2.1904346252331703 },
-    title: 'Ironhack BCN'
+const madrid = {
+    coords: { lat: 40.4167910787894, lng: -3.7037886442178833 },
+    title: 'Kilometro 0'
 }
 
-let myMap
+let mainMap
 
 function initMap() {
-    getLocaltion()
+    getLocation()
+    getPlaces()
     renderMap()
 }
 
-function getLocaltion() {
+function getLocation() {
 
     navigator.geolocation.getCurrentPosition(
         position => placeMap(position),
@@ -23,11 +24,34 @@ function getLocaltion() {
 function placeMap({ coords }) {
 
     const { latitude: lat, longitude: lng } = coords
-    myMap.setCenter({ lat, lng })
+    mainMap.setCenter({ lat, lng })
 
     new google.maps.Marker({
         position: { lat, lng },
-        map: myMap
+        map: mainMap
+    })
+}
+
+function getPlaces() {
+
+    axios
+        .get('/api/places')
+        //console.log('/api/places')
+        .then(response => setMarkers(response.data))
+        .catch(err => console.log(err))
+}
+
+function setMarkers(places) {
+
+    places.forEach(elm => {
+        const lat = elm.location.coordinates[0]
+        const lng = elm.location.coordinates[1]
+
+        new google.maps.Marker({
+            map: mainMap,
+            position: { lat, lng },
+            title: elm.name
+        })
     })
 }
 
@@ -35,7 +59,7 @@ function placeMap({ coords }) {
 function renderMap() {
 
     myMap = new google.maps.Map(
-        document.querySelector('#myMap'),
-        { zoom: 13, center: ironhack.coords }
+        document.getElementById('mainMap'),
+        { zoom: 13, center: madrid.coords, styles: mapStyles.aubergine }
     )
 }
