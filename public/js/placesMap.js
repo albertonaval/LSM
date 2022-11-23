@@ -10,12 +10,15 @@ function initMap() {
 function getPathId() {
     // https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
     id = location.pathname.split('/')
+    while (id.length > 1) {
+        id.shift()
+    }
 }
 
 function getPlaces() {
 
     axios
-        .get(`/api/places/${id[3]}`)
+        .get(`/api/places/${id}`)
         .then(response => {
             //console.log('DATA', response.data)
             renderMap(response.data)
