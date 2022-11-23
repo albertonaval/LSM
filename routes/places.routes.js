@@ -102,6 +102,7 @@ router.get('/details/:id', (req, res) => {
 router.get("/create", (req, res) => res.render('places/create'))
 
 router.post("/create", uploader.single('imageField'), (req, res) => {
+    console.log('ruta')
 
     const { name, description, type, rating, owner, latitude, longitude } = req.body
 
