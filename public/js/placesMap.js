@@ -60,7 +60,8 @@ function renderMap(place) {
             center: {
                 lat, lng
             },
-            disableDefaultUI: true
+            disableDefaultUI: true,
+            styles: mapStyles.aubergine
         }
     )
 

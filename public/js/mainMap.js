@@ -1,4 +1,5 @@
 
+
 const madridCenter = {
     coords: { lat: 40.4167910787894, lng: -3.7037886442178833 },
     title: 'Kilometro 0'
@@ -22,6 +23,7 @@ function placeMap({ coords }) {
         map: mainMap
     })
 }
+
 function getPlaces() {
 
     axios
@@ -41,7 +43,7 @@ function setMarkers(places) {
             map: mainMap,
             position: { lat, lng },
             title: elm.name,
-            radius: 5000
+
         })
     })
 }
@@ -49,7 +51,8 @@ function getLocation() {
 
     navigator.geolocation.getCurrentPosition(
         position => placeMap(position),
-        error => console.log('ERROR', error)
+        error => console.log('ERROR', error),
+
     )
 }
 
@@ -69,9 +72,10 @@ function placeMap({ coords }) {
             fillOpacity: 0.6
         }
     })
+    getPlacesandSetMarkers(coords)
 }
 
-function getPlacesandSetMarkers() {
+function getPlacesandSetMarkers(coords) {
 
     axios
         .get('/api/places')
@@ -96,7 +100,7 @@ function getPlacesandSetMarkers() {
 
 function renderMap() {
 
-    myMap = new google.maps.Map(
+    mainMap = new google.maps.Map(
         document.getElementById('mainMap'),
         {
             zoom: 12,
