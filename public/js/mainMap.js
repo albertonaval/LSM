@@ -9,7 +9,6 @@ let mainMap
 function initMap() {
     renderMap()
     getLocation()
-    getPlacesandSetMarkers()
 
 }
 function placeMap({ coords }) {
@@ -54,8 +53,9 @@ function getLocation() {
 }
 
 function placeMap({ coords }) {
-
+    console.log(coords)
     const { latitude: lat, longitude: lng } = coords
+
     mainMap.setCenter({ lat, lng })
 
     new google.maps.Marker({
@@ -69,12 +69,14 @@ function placeMap({ coords }) {
             fillOpacity: 0.6
         }
     })
+
+    getPlacesandSetMarkers({ lat, lng })
 }
 
-function getPlacesandSetMarkers() {
+function getPlacesandSetMarkers(coords) {
 
     axios
-        .get('/api/places')
+        .get(`/api/places?lat=${coords.lat}&lng=${coords.lng}`)
         //console.log('/api/places')
         .then(response => response.data.forEach(res => {
             const [lat, lng] = res.location.coordinates
