@@ -8,13 +8,8 @@ const madrid = {
 let mainMap
 
 function initMap() {
-<<<<<<< HEAD
-    getPlaces()
-    getLocaltion()
-=======
     getLocation()
     getPlaces()
->>>>>>> e0fc0239b11412ef7786c42c31de4f38f7189791
     renderMap()
 }
 
@@ -56,12 +51,6 @@ function placeMap({ coords }) {
 
     new google.maps.Marker({
         position: { lat, lng },
-<<<<<<< HEAD
-        map: myMap,
-        icon: {
-            url: "http://maps.google.com/mapfiles/ms/icons/pink-dot.png"
-        }
-=======
         map: mainMap
     })
 }
@@ -86,7 +75,6 @@ function setMarkers(places) {
             position: { lat, lng },
             title: elm.name
         })
->>>>>>> e0fc0239b11412ef7786c42c31de4f38f7189791
     })
 }
 
@@ -95,13 +83,7 @@ function setMarkers(places) {
 function renderMap() {
 
     myMap = new google.maps.Map(
-<<<<<<< HEAD
-        document.querySelector('#mainMap'),
-        { zoom: 13, center: ironhack.coords, styles: mapStyle.aubergine }
-
-=======
         document.getElementById('mainMap'),
         { zoom: 13, center: madrid.coords, styles: mapStyles.aubergine }
->>>>>>> e0fc0239b11412ef7786c42c31de4f38f7189791
     )
 }
