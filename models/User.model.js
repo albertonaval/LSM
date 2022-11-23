@@ -24,6 +24,11 @@ const userSchema = new Schema(
       enum: ['USER', 'CREATOR', 'ADMIN'],
       default: 'USER'
     },
+
+    imageUrl: {
+      type: String,
+    },
+
   },
   {
 

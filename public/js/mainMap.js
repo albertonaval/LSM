@@ -12,7 +12,39 @@ function initMap() {
     getPlacesandSetMarkers()
 
 }
+function placeMap({ coords }) {
 
+    const { latitude: lat, longitude: lng } = coords
+    mainMap.setCenter({ lat, lng })
+
+    new google.maps.Marker({
+        position: { lat, lng },
+        map: mainMap
+    })
+}
+function getPlaces() {
+
+    axios
+        .get('/api/places')
+        //console.log('/api/places')
+        .then(response => setMarkers(response.data))
+        .catch(err => console.log(err))
+}
+
+function setMarkers(places) {
+
+    places.forEach(elm => {
+        const { lat, lng } = elm.location.coordinates
+        // const lng = elm.location.coordinates[1]
+
+        new google.maps.Marker({
+            map: mainMap,
+            position: { lat, lng },
+            title: elm.name,
+            radius: 5000
+        })
+    })
+}
 function getLocation() {
 
     navigator.geolocation.getCurrentPosition(
