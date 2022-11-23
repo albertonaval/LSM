@@ -4,13 +4,14 @@ const User = require('./../models/User.model')
 const bcryptjs = require('bcryptjs')
 const saltRounds = 10
 const { isLoggedOut } = require('../middleware/route-guard')
+const uploader = require('./../config/uploader.config')
 
 
 router.get('/signup', isLoggedOut, (req, res) => {
     res.render('auth/signUp')
 })
 
-router.post('/signup', isLoggedOut, (req, res, next) => {
+router.post('/signup', isLoggedOut, uploader.single('imageField'), (req, res, next) => {
 
     const { email, username, password } = req.body
 
@@ -20,7 +21,8 @@ router.post('/signup', isLoggedOut, (req, res, next) => {
             return bcryptjs.hash(password, salt)
         })
         .then(hashedPassword => {
-            return User.create({ username, email, password: hashedPassword })
+            return User.create({ username, email, password: hashedPassword, imageUrl: req.file.path })
+
         })
         .then(() => res.redirect('/auth/login'))
         .catch(err => console.log(err))
@@ -48,7 +50,7 @@ router.post('/login', isLoggedOut, (req, res) => {
             }
 
             req.session.currentUser = user
-            res.redirect(`/user/profile/${user._id}`)
+            res.render(`user/profile`, user)
         })
         .catch(err => console.log(err))
 })
