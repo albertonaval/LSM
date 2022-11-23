@@ -104,7 +104,7 @@ router.get("/create", (req, res) => res.render('places/create'))
 router.post("/create", uploader.single('imageField'), (req, res) => {
 
     const { name, description, type, rating, owner, latitude, longitude } = req.body
-    console.log(req.body)
+
     const location = {
         type: 'Point',
         coordinates: [latitude, longitude]
@@ -113,7 +113,7 @@ router.post("/create", uploader.single('imageField'), (req, res) => {
     Place
         .create({ name, description, type, rating, owner, location, imageUrl: req.file.path })
         .then(() => {
-            console.warn(xhr.responseText)
+
             res.redirect('/places/list')
         })
         .catch(err => console.log(err))
