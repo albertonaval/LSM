@@ -1,6 +1,5 @@
 
-
-const madrid = {
+const madridCenter = {
     coords: { lat: 40.4167910787894, lng: -3.7037886442178833 },
     title: 'Kilometro 0'
 }
@@ -8,9 +7,10 @@ const madrid = {
 let mainMap
 
 function initMap() {
-    getLocation()
-    getPlaces()
     renderMap()
+    getLocation()
+    getPlacesandSetMarkers()
+
 }
 
 function getLocation() {
@@ -21,29 +21,6 @@ function getLocation() {
     )
 }
 
-function getPlaces() {
-
-    axios
-        .get('/api/places')
-        //console.log('/api/places')
-        .then(response => setMarkers(response.data))
-        .catch(err => console.log(err))
-}
-
-function setMarkers(places) {
-
-    places.forEach(elm => {
-        const lat = elm.location.coordinates[0]
-        const lng = elm.location.coordinates[1]
-
-        new google.maps.Marker({
-            map: mainMap,
-            position: { lat, lng },
-            title: elm.name
-        })
-    })
-}
-
 function placeMap({ coords }) {
 
     const { latitude: lat, longitude: lng } = coords
@@ -51,39 +28,50 @@ function placeMap({ coords }) {
 
     new google.maps.Marker({
         position: { lat, lng },
-        map: mainMap
+        map: mainMap,
+        icon: {
+            path: "M10.453 14.016l6.563-6.609-1.406-1.406-5.156 5.203-2.063-2.109-1.406 1.406zM12 2.016q2.906 0 4.945 2.039t2.039 4.945q0 1.453-0.727 3.328t-1.758 3.516-2.039 3.070-1.711 2.273l-0.75 0.797q-0.281-0.328-0.75-0.867t-1.688-2.156-2.133-3.141-1.664-3.445-0.75-3.375q0-2.906 2.039-4.945t4.945-2.039z",
+            scale: 1.5,
+            strokeWeight: 1.5,
+            fillColor: '#f706b6',
+            fillOpacity: 0.6
+        }
     })
 }
 
-function getPlaces() {
+function getPlacesandSetMarkers() {
 
     axios
         .get('/api/places')
         //console.log('/api/places')
-        .then(response => setMarkers(response.data))
+        .then(response => response.data.forEach(res => {
+            const [lat, lng] = res.location.coordinates
+            new google.maps.Marker({
+                map: mainMap,
+                position: { lat, lng },
+                title: res.name,
+                icon: {
+                    path: "M10.453 14.016l6.563-6.609-1.406-1.406-5.156 5.203-2.063-2.109-1.406 1.406zM12 2.016q2.906 0 4.945 2.039t2.039 4.945q0 1.453-0.727 3.328t-1.758 3.516-2.039 3.070-1.711 2.273l-0.75 0.797q-0.281-0.328-0.75-0.867t-1.688-2.156-2.133-3.141-1.664-3.445-0.75-3.375q0-2.906 2.039-4.945t4.945-2.039z",
+                    scale: 1.5,
+                    strokeWeight: 1.5,
+                    fillColor: 'yellow',
+                    fillOpacity: 0.6
+                }
+            })
+        }))
         .catch(err => console.log(err))
 }
 
-function setMarkers(places) {
-
-    places.forEach(elm => {
-        const lat = elm.location.coordinates[0]
-        const lng = elm.location.coordinates[1]
-
-        new google.maps.Marker({
-            map: mainMap,
-            position: { lat, lng },
-            title: elm.name
-        })
-    })
-}
-
-
-
 function renderMap() {
 
-    myMap = new google.maps.Map(
+    mainMap = new google.maps.Map(
         document.getElementById('mainMap'),
-        { zoom: 13, center: madrid.coords, styles: mapStyles.aubergine }
+        {
+            zoom: 12,
+            center: madridCenter.coords,
+            styles: mapStyles.aubergine,
+            disableDefaultUI: true
+        }
     )
 }
+
