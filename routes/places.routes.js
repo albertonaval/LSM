@@ -27,8 +27,6 @@ router.get('/discos-list', (req, res) => {
 
 router.get('/events-list', (req, res) => {
 
-
-
     api
         .getAllEvents()
         .then(response => {

@@ -28,7 +28,7 @@ function getPlaces() {
 }
 
 function setMarkers(place) {
-    //console.log('setMarkers')
+
     let lat = place.location.coordinates[0]
     let lng = place.location.coordinates[1]
 
