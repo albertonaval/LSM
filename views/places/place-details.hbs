@@ -1,18 +1,20 @@
 <div class="container d-flex justify-content-center align-items-center cardDetails">
     <div class="card text-center" style="max-width: 540px">
         <div class="row g-0 align-items-center">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <figure>
                     <img src={{place.imageUrl}} class="img-fluid rounded-start" alt="{{name}}">
                     <figcaption>{{name}}</figcaption>
                 </figure>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <div class="card-body">
                     <h5 class="card-title">{{place.name}}</h5>
                     <p class="card-text">{{place.description}}</p>
                     <p class="card-text">Rating: {{place.rating}}</p>
                     <figure id="detailsMap"></figure>
+                    <p class="card-text">Comments: {{place.comments}}</p>
+
                     {{#if isAdmin }}
                     <a href="/places/{{place._id}}/edit" class="btn btn-warning">Editar</a>
                     <form action="/places/{{place._id}}/delete" method="POST" style="display:inline">

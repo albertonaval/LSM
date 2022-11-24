@@ -37,6 +37,10 @@ const placesSchema = new Schema(
             },
             coordinates: [Number]
         },
+        comments: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Review'
+        }]
     },
     {
         timestamps: true
