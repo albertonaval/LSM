@@ -20,7 +20,7 @@ function getPlaces() {
     axios
         .get(`/api/places/${id}`)
         .then(response => {
-            console.log('DATA', response.data)
+            //console.log('DATA', response.data)
             renderMap(response.data)
         })
         .catch(err => console.log(err))

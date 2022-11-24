@@ -28,6 +28,10 @@ const userSchema = new Schema(
     imageUrl: {
       type: String,
     },
+    favorites: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Place'
+    }],
 
     favorites: [{
       type: mongoose.Schema.Types.ObjectId,

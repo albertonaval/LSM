@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const { checkRoles, isLoggedIn } = require('../middleware/route-guard')
 const Place = require('../models/Place.model')
+const Review = require('../models/Review.model')
 const ticketmasterApi = require('./../services/ticketmaster.service')
 const api = new ticketmasterApi()
 const uploader = require('./../config/uploader.config')
@@ -64,11 +65,15 @@ router.get('/hotels-list', (req, res) => {
 
 router.get('/details/:id', (req, res) => {
 
-    const { id: disco_id } = req.params
+    const { id: place_id } = req.params
 
     Place
-        .findById(disco_id)
+        .findById(place_id)
+        .populate({
+            path: 'comments',
+        })
         .then((place) => {
+
             res.render('places/place-details', {
                 place,
                 isAdmin: req.session.currentUser.role === 'ADMIN',
@@ -78,23 +83,16 @@ router.get('/details/:id', (req, res) => {
         .catch(err => console.log(err))
 })
 
-router.get('/details/:id', (req, res) => {
-    const { id: restaurant_id } = req.params
+router.get('details/comments/:id', isLoggedIn, (req, res, next) => {
+    const { id: place_id } = req.params
 
     Place
-        .findById(restaurant_id)
-        .then((restaurant) => res.render('places/place-details', restaurant))
-        .catch(err => console.log(err))
+        .findByIdAndUpdate(place_id, { $addToSet: { comments: id } })
+        .then(() => res.redirect('/details/:id'))
+        .catch(err => next(err))
 })
 
-router.get('/details/:id', (req, res) => {
-    const { id: hotel_id } = req.params
 
-    Place
-        .findById(hotel_id)
-        .then((hotel) => res.render('places/place-details', hotel))
-        .catch(err => console.log(err))
-})
 
 //CREATE
 router.get("/create", (req, res) => res.render('places/create'))
