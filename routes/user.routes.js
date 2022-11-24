@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('./../models/User.model')
 const { isLoggedIn, checkRoles, } = require('../middleware/route-guard');
-const Place = require('../models/Place.model');
+
 
 router.get("/profile", isLoggedIn, (req, res, next) => {
 
@@ -20,7 +20,18 @@ router.get("/profile/favorites/:id", isLoggedIn, (req, res, next) => {
     const { id } = req.params
     User
         .findByIdAndUpdate(req.session.currentUser._id, { $addToSet: { favorites: id } })
-        .then(favorites => {
+        .then(() => {
+            res.redirect('/user/profile')
+        })
+        .catch(err => next(err))
+})
+
+router.post("/place/favorites/:id", isLoggedIn, (req, res, next) => {
+    const { id } = req.params
+    console.log(id)
+    User
+        .findByIdAndUpdate(req.session.currentUser._id, { $pull: { favorites: id } })
+        .then(() => {
             res.redirect('/user/profile')
         })
         .catch(err => next(err))

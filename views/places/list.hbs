@@ -11,6 +11,10 @@
                 {{#if isAdmin}}
                 <a href="/places/create" class="btn btn-dark">Crear</a>
                 {{/if}}
+
+                {{#if isCreator }}
+                <a href="/places/create" class="btn btn-dark">Crear</a>
+                {{/if}}
             </div>
         </div>
         <div class="card mt-3 me-3" style="width: 18rem;">
@@ -23,6 +27,10 @@
                 <a href="/places/create" class="btn btn-dark">Crear</a>
                 {{/if}}
 
+                {{#if isCreator }}
+                <a href="/places/create" class="btn btn-dark">Crear</a>
+                {{/if}}
+
             </div>
         </div>
         <div class="card mt-3 me-3" style="width: 18rem;">
@@ -32,9 +40,13 @@
                 <h5 class="card-title">Eventos</h5>
                 <p class="card-text">Mejores eventos de la zona</p>
                 <a href="/places/events-list" class="btn btn-dark">Acceder</a>
+                {{#if isCreator }}
+                <a href="/places/create" class="btn btn-dark">Crear</a>
+                {{/if}}
                 {{#if isAdmin}}
                 <a href="/places/create" class="btn btn-dark">Crear</a>
                 {{/if}}
+
             </div>
         </div>
         <div class="card mt-3" style="width: 18rem;">
@@ -45,6 +57,10 @@
                 <p class="card-text">Mejores restaurantes de la zona</p>
                 <a href="/places/restaurants-list" class="btn btn-dark">Acceder</a>
                 {{#if isAdmin}}
+                <a href="/places/create" class="btn btn-dark">Crear</a>
+                {{/if}}
+
+                {{#if isCreator }}
                 <a href="/places/create" class="btn btn-dark">Crear</a>
                 {{/if}}
             </div>

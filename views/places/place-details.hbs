@@ -4,7 +4,7 @@
             <div class="col-md-3">
                 <figure>
                     <img src={{place.imageUrl}} class="img-fluid rounded-start" alt="{{name}}">
-                    <figcaption>{{name}}</figcaption>
+
                 </figure>
             </div>
             <div class="col-md-9">
@@ -14,19 +14,20 @@
                     <p class="card-text">Rating: {{place.rating}}</p>
                     <figure id="detailsMap"></figure>
                     <p class="card-text">Comments: {{place.comments}}</p>
-
+                    {{#if isCreator}}
+                    <a href="/places/{{place._id}}/edit" class="btn btn-warning">Editar</a>
+                    {{/if}}
                     {{#if isAdmin }}
                     <a href="/places/{{place._id}}/edit" class="btn btn-warning">Editar</a>
                     <form action="/places/{{place._id}}/delete" method="POST" style="display:inline">
                         <input type="submit" value="Eliminar lugar" class="btn btn-danger">
                     </form>
                     {{/if}}
-                    {{#if isCreator}}
-                    <a href="/places/{{place._id}}/edit" class="btn btn-warning">Editar</a>
-                    {{/if}}
+
+
 
                     <a href="/" class="btn btn-dark">Volver al inicio</a>
-                    <a href="/user/profile/favorites/{{place._id}}" class="btn btn-dark">Añadir a mi lista</a>
+                    <a href="user/profile/favorites/{{place._id}}" class="btn btn-dark">Añadir a mi lista</a>
                 </div>
             </div>
         </div>

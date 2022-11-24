@@ -25,10 +25,26 @@ const checkRoles = (...rolesToCheck) => (req, res, next) => {
         res.render('auth/login', { errorMessage: `No tienes permisos de ${rolesToCheck}` })
     }
 }
+const roles = ((req, res, next) => {
+    if (req.session.currentUser) {
+        if (req.session.currentUser.role === 'ADMIN') {
+            req.app.locals.admin = req.session.currentUser.role
 
+        } else {
+            req.app.locals.user = req.session.currentUser.role
+        }
+
+    } else {
+        req.app.locals.admin = null
+        req.app.locals.user = null
+
+    }
+    next()
+})
 
 module.exports = {
     isLoggedIn,
     isLoggedOut,
-    checkRoles
+    checkRoles,
+    roles
 }

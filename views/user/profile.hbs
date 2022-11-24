@@ -12,7 +12,7 @@
                 <div class="col-md-4">
                     <figure>
                         <img src={{imageUrl}} class="img-fluid rounded-start" alt="{{name}}">
-                        <figcaption>{{name}}</figcaption>
+
                     </figure>
                 </div>
                 <div class="col-md-8">
@@ -20,10 +20,13 @@
                         <h5 class="card-title">{{name}}</h5>
                         <p class="card-text">{{description}}</p>
                         <p class="card-text">Rating: {{rating}}</p>
-
+                        <form action="/user/place/favorites/{{_id}}" method="POST" style="display:inline">
+                            <input type="submit" value="Eliminar lugar" class="btn btn-danger">
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
         {{/each}}
     </div>
+</div>

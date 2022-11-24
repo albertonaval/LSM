@@ -2,7 +2,7 @@
 
     <div class="row justify-content-center">
         <div class="col-md-6">
-
+            {{#if isAdmin }}
             <h1>Espacio para tu creatividad</h1>
 
             <form action="/places/create" method="POST" enctype="multipart/form-data">
@@ -50,6 +50,56 @@
 
             </form>
 
-            <hr>
+            {{/if }}
+
+            {{#if isCreator }}
+            <h1>Espacio para tu creatividad</h1>
+
+            <form action="/places/create" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="name" class="form-label"></label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                </div>
+                <div class="mb-3">
+                    <label for="type" class="form-label"></label>
+                    <select class="form-select" aria-label="Default select example" name="type">
+                        <option selected>Clasifica tu creacion</option>
+                        <option value="Disco">Discoteca</option>
+                        <option value="Hotel">Hotel</option>
+                        <option value="Event">Evento</option>
+                        <option value="Restaurant">Restaurante</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label"></label>
+                    <input type="text" class="form-control" id="description" name="description"
+                        placeholder="Cuentanos que te parece">
+                </div>
+                <div class="mb-3">
+                    <label for="rate" class="form-label">Puntuación</label>
+                    <input type="number" class="form-control" id="rating" name="rating" placeholder="0-5" min="0"
+                        max="5">
+                </div>
+                <div class="mb-3">
+                    <label for="author" class="form-label">Autor/a</label>
+                    <input type="text" class="form-control" id="author" name="author">
+                </div>
+                <div class="mb-3">
+                    <label for="imageUrl" class="form-label">Imagen</label>
+                    <input type="file" class="form-control" id="imageUrl" name="imageField">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Coordenadas</label>
+                    <input type="text" class="form-control" id="latitude" name="latitude" placeholder="Latitud">
+                    <br>
+                    <input type="text" class="form-control" id="longitude" name="longitude" placeholder="Longitud">
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-dark">Crear</button>
+                </div>
+
+            </form>
+
+            {{/if }}
         </div>
     </div>

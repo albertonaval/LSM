@@ -15,6 +15,7 @@ router.get('/list', (req, res) => {
         .then(places => res.render('places/list', {
             places,
             isAdmin: req.session.currentUser.role === 'ADMIN',
+            isCreator: req.session.currentUser.role === 'CREATOR'
         }))
         .catch(err => console.log(err))
 })
@@ -95,7 +96,10 @@ router.get('details/comments/:id', isLoggedIn, (req, res, next) => {
 
 
 //CREATE
-router.get("/create", (req, res) => res.render('places/create'))
+router.get("/create", (req, res) => res.render('places/create', {
+    isAdmin: req.session.currentUser.role === 'ADMIN',
+    isCreator: req.session.currentUser.role === 'CREATOR'
+}))
 
 router.post("/create", uploader.single('imageField'), (req, res) => {
 

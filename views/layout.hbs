@@ -23,6 +23,7 @@
          </button>
          <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+               {{#if admin}}
                <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                      aria-expanded="false">
@@ -44,7 +45,58 @@
                <li class="nav-item">
                   <a class="nav-link" href='/user/profile'>Mi Perfil</a>
                </li>
+               {{/if}}
+               {{#if user}}
+               <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                     aria-expanded="false">
+                     Lugares
+                  </a>
+                  <ul class="dropdown-menu">
+                     <li><a class="dropdown-item" href="/places/discos-list">Discotecas</a></li>
+                     <li><a class="dropdown-item" href="/places/events-list">Eventos</a></li>
+                     <li><a class="dropdown-item" href="/places/restaurants-list">Restaurantes</a></li>
+                     <li><a class="dropdown-item" href="/places/hotels-list">Hoteles</a></li>
+                  </ul>
+
+
+               <li class="nav-item">
+                  <a class="nav-link" href="/mapa">Mapa</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href='/user/profile'>Mi Perfil</a>
+               </li>
+               {{/if}}
+               {{#if creator}}
+               <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                     aria-expanded="false">
+                     Lugares
+                  </a>
+                  <ul class="dropdown-menu">
+                     <li><a class="dropdown-item" href="/places/discos-list">Discotecas</a></li>
+                     <li><a class="dropdown-item" href="/places/events-list">Eventos</a></li>
+                     <li><a class="dropdown-item" href="/places/restaurants-list">Restaurantes</a></li>
+                     <li><a class="dropdown-item" href="/places/hotels-list">Hoteles</a></li>
+                  </ul>
+
+               <li class="nav-item">
+                  <a class="nav-link" href="/places/create">Crear</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="/mapa">Mapa</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href='/user/profile'>Mi Perfil</a>
+               </li>
+               {{/if}}
             </ul>
+
+
+
+
+
+
             <div class="btn-group" role="group" aria-label="Basic example">
                <a href="/user/profile" class="btn btn-success">Log In</a>
                <a href="/auth/logout" class="btn btn-danger">Log Out</a>

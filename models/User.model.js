@@ -33,11 +33,6 @@ const userSchema = new Schema(
       ref: 'Place'
     }],
 
-    favorites: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Place'
-    }],
-
   },
   {
 
