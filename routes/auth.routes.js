@@ -55,7 +55,7 @@ router.post('/login', isLoggedOut, (req, res) => {
             }
 
             req.session.currentUser = user
-            res.redirect('/user/profile')
+            res.redirect(`/user/profile`)
         })
         .catch(err => console.log(err))
 })
