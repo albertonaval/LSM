@@ -26,7 +26,7 @@ router.get("/profile/favorites/:id", isLoggedIn, (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.post("/place/favorites/:id", isLoggedIn, (req, res, next) => {
+router.post("/profile/favorites/:id", isLoggedIn, (req, res, next) => {
     const { id } = req.params
     console.log(id)
     User

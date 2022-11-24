@@ -20,8 +20,8 @@
                     <form action="/reviews/{{id}}/delete" method="POST" style="display:inline">
                         <input type="submit" value="Delete" class="btn btn-danger">
                     </form>
-
                     {{/each}}
+
 
                     <a href="/reviews/create/{{place._id}}" class="btn btn-dark">Añadir un Comentario</a>
                     {{#if isAdmin }}
@@ -34,7 +34,7 @@
 
 
                     <a href="/" class="btn btn-dark">Volver al inicio</a>
-                    <a href="user/profile/favorites/{{place._id}}" class="btn btn-dark">Añadir a mi lista</a>
+                    <a href="/user/profile/favorites/{{place._id}}" class="btn btn-dark">Añadir a mi lista</a>
                 </div>
             </div>
         </div>

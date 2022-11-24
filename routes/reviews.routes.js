@@ -4,9 +4,9 @@ const { isLoggedIn, } = require('../middleware/route-guard');
 const Review = require('./../models/Review.model')
 const Place = require('./../models/Place.model')
 
-router.get('/create/:id', isLoggedIn, (req, res) => res.render('reviews/create', { id: req.params.id }))
+router.get('/create/:id', (req, res) => res.render('reviews/create', { id: req.params.id }))
 
-router.post('/create/:id', isLoggedIn, (req, res, next) => {
+router.post('/create/:id', (req, res, next) => {
     const { id: place_id } = req.params
     const { text } = req.body
 
@@ -17,7 +17,7 @@ router.post('/create/:id', isLoggedIn, (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.post('/:id/delete', isLoggedIn, (req, res) => {
+router.post('/:id/delete', (req, res) => {
 
     const { id: review_id } = req.params
 
