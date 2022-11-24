@@ -1,13 +1,12 @@
 <div class="container d-flex justify-content-center align-items-center cardDetails">
-    <div class="card text-center" style="max-width: 540px">
+    <div class="card text-center bg-dark" style="max-width: 100%">
         <div class="row g-0 align-items-center">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <figure>
-                    <img src={{place.imageUrl}} class="img-fluid rounded-start" alt="{{name}}">
-
+                    <img src={{place.imageUrl}} class="img-fluid rounded-start m-3 p-2" alt="{{name}}">
                 </figure>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-8">
                 <div class="card-body">
                     <h5 class="card-title">{{place.name}}</h5>
                     <p class="card-text">{{place.description}}</p>
@@ -17,24 +16,26 @@
                     {{#each place.comments}}
                     <p class="card-text">Comments: {{text}}</p>
                     <p class="card-text">Owner: {{owner.username}}</p>
-                    <form action="/reviews/{{id}}/delete" method="POST" style="display:inline">
-                        <input type="submit" value="Delete" class="btn btn-danger">
+                    <form action="/reviews/{{id}}/delete" method="POST">
+                        <input type="submit" value="Delete" class="btn btn-outline-danger">
                     </form>
 
                     {{/each}}
-
-                    <a href="/reviews/create/{{place._id}}" class="btn btn-dark">Añadir un Comentario</a>
+                    <a href="/reviews/create/{{place._id}}" class="btn btn-outline-light">Add Comment</a>
+                    {{#if isCreator }}
+                    <a href="/places/{{place._id}}/edit" class="btn btn-outline-warning">Edit</a>
+                    {{/if}}
                     {{#if isAdmin }}
-                    <a href="/places/{{place._id}}/edit" class="btn btn-warning">Editar</a>
+                    <a href="/places/{{place._id}}/edit" class="btn btn-outline-warning">Edit</a>
                     <form action="/places/{{place._id}}/delete" method="POST" style="display:inline">
-                        <input type="submit" value="Eliminar lugar" class="btn btn-danger">
+                        <input type="submit" value="Delete" class="btn btn-outline-danger">
                     </form>
                     {{/if}}
 
 
 
-                    <a href="/" class="btn btn-dark">Volver al inicio</a>
-                    <a href="user/profile/favorites/{{place._id}}" class="btn btn-dark">Añadir a mi lista</a>
+                    <a href="/" class="btn btn-outline-light">Home</a>
+                    <a href="/user/profile/favorites/{{place._id}}" class="btn btn-outline-light">Add to my profile</a>
                 </div>
             </div>
         </div>

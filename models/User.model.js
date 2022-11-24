@@ -30,6 +30,11 @@ const userSchema = new Schema(
       type: String,
     },
 
+    favorites: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Place'
+    }]
+
   },
   {
 

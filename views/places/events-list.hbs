@@ -1,16 +1,15 @@
-<div class="container mt-5 ">
-    <h1>Eventos</h1>
+<div class="container mt-3 ">
+    <h1 class="text-uppercase fw-bold font-monospace p-4 text-center">Eventos</h1>
+    <hr>
     <div class="container d-flex">
         <div class="row">
             {{#each event}}
-            <div class="card " style="width: 18rem;">
-
-                <img src="{{images.[0].url}}" class="card-img-top" alt="...">
+            <div class="card bg-dark m-3 p-2" style="width: 18rem;">
+                <img src="{{images.[0].url}}" class="card-img-top mt-3 card-img" alt="{{name}}">
                 <div class="card-body">
-
-                    <h5 class="card-title ">{{name}} </h5>
-                    <p>{{_embedded.venues.[0].name}}</p>
-                    <a href="{{url}}" class="btn btn-dark">Comprar Entradas</a>
+                    <h5 class="card-title text-center text-light">{{name}} </h5>
+                    <p class="text-center text-light">{{_embedded.venues.[0].name}}</p>
+                    <a href="{{url}}" class="btn btn-outline-light d-flex justify-content-center">Comprar Entradas</a>
                 </div>
             </div>
             {{/each}}
