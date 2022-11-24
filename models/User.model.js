@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, default: mongoose } = require("mongoose");
 
 const userSchema = new Schema(
   {
@@ -28,6 +28,11 @@ const userSchema = new Schema(
     imageUrl: {
       type: String,
     },
+
+    favorites: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Place'
+    }],
 
   },
   {

@@ -6,7 +6,7 @@ const api = new ticketmasterApi()
 const uploader = require('./../config/uploader.config')
 
 //READ
-router.get('/list', checkRoles('ADMIN'), (req, res) => {
+router.get('/list', (req, res) => {
 
     Place
         .find()
