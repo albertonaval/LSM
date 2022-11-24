@@ -1,5 +1,4 @@
 
-
 const madridCenter = {
     coords: { lat: 40.4167910787894, lng: -3.7037886442178833 },
     title: 'Kilometro 0'
@@ -10,7 +9,6 @@ let mainMap
 function initMap() {
     renderMap()
     getLocation()
-    getPlacesandSetMarkers()
 
 }
 function placeMap({ coords }) {
@@ -23,7 +21,6 @@ function placeMap({ coords }) {
         map: mainMap
     })
 }
-
 function getPlaces() {
 
     axios
@@ -43,7 +40,7 @@ function setMarkers(places) {
             map: mainMap,
             position: { lat, lng },
             title: elm.name,
-
+            radius: 5000
         })
     })
 }
@@ -51,14 +48,14 @@ function getLocation() {
 
     navigator.geolocation.getCurrentPosition(
         position => placeMap(position),
-        error => console.log('ERROR', error),
-
+        error => console.log('ERROR', error)
     )
 }
 
 function placeMap({ coords }) {
-
+    console.log(coords)
     const { latitude: lat, longitude: lng } = coords
+
     mainMap.setCenter({ lat, lng })
 
     new google.maps.Marker({
@@ -72,13 +69,14 @@ function placeMap({ coords }) {
             fillOpacity: 0.6
         }
     })
-    getPlacesandSetMarkers(coords)
+
+    getPlacesandSetMarkers({ lat, lng })
 }
 
 function getPlacesandSetMarkers(coords) {
 
     axios
-        .get('/api/places')
+        .get(`/api/places?lat=${coords.lat}&lng=${coords.lng}`)
         //console.log('/api/places')
         .then(response => response.data.forEach(res => {
             const [lat, lng] = res.location.coordinates

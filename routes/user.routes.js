@@ -14,17 +14,6 @@ router.get("/profile", isLoggedIn, (req, res, next) => {
         .catch(err => console.log(err))
 })
 
-router.post("/profile", isLoggedIn, (req, res, next) => {
-
-    User
-        .findOne({ email })
-        .then(user => {
-            req.session.currentUser = user
-            res.render('user/profile', user)
-        })
-        .catch(err => console.log(err))
-})
-
 router.get('/admin', isLoggedIn, checkRoles('ADMIN', 'CREATOR'), (req, res, next) => {
     res.render('admin-panel')
 })
