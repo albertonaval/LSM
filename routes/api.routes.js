@@ -22,16 +22,16 @@ router.get("/places", (req, res, next) => {
             console.log({ places })
             res.json(places)
         })
-        .catch(err => console.log(err))
+        .catch(err => next(err))
 })
 
-router.get("/places/:id", (req, res) => {
+router.get("/places/:id", (req, res, next) => {
 
     const { id } = req.params
     Place
         .findById(id)
         .then(place => res.json(place))
-        .catch(err => console.log(err))
+        .catch(err => next(err))
 
 })
 

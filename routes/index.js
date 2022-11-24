@@ -7,5 +7,6 @@ module.exports = app => {
     app.use("/user", require("./user.routes"))
     app.use("/api", require("./api.routes"))
     app.use("/", require("./map.routes"))
+    app.use("/reviews", require("./reviews.routes"))
 
 }
