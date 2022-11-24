@@ -1,13 +1,13 @@
 const router = require('express').Router()
 const { checkRoles, isLoggedIn } = require('../middleware/route-guard')
 const Place = require('../models/Place.model')
-const Review = require('../models/Review.model')
 const ticketmasterApi = require('./../services/ticketmaster.service')
 const api = new ticketmasterApi()
 const uploader = require('./../config/uploader.config')
+const { populate } = require('../models/Place.model')
 
 //READ
-router.get('/list', (req, res) => {
+router.get('/list', (req, res, next) => {
 
     Place
         .find()
@@ -17,17 +17,17 @@ router.get('/list', (req, res) => {
             isAdmin: req.session.currentUser.role === 'ADMIN',
             isCreator: req.session.currentUser.role === 'CREATOR'
         }))
-        .catch(err => console.log(err))
+        .catch(err => next(err))
 })
 
-router.get('/discos-list', (req, res) => {
+router.get('/discos-list', (req, res, next) => {
     Place
         .find({ type: 'Disco' })
         .then(discos => res.render('places/discos-list', { discos }))
-        .catch(err => console.log(err))
+        .catch(err => next(err))
 })
 
-router.get('/events-list', (req, res) => {
+router.get('/events-list', (req, res, next) => {
 
     api
         .getAllEvents()
@@ -45,14 +45,14 @@ router.get('/events-list', (req, res) => {
             console.log(cleanArr)
             res.render('places/events-list', { event: eventsArr })
         })
-        .catch(err => console.log(err))
+        .catch(err => next(err))
 })
 
-router.get('/restaurants-list', (req, res) => {
+router.get('/restaurants-list', (req, res, next) => {
     Place
         .find({ type: 'Restaurant' })
         .then(restaurants => res.render('places/restaurants-list', { restaurants }))
-        .catch(err => console.log(err))
+        .catch(err => next(err))
 })
 
 router.get('/hotels-list', (req, res) => {
@@ -62,16 +62,19 @@ router.get('/hotels-list', (req, res) => {
         .catch(err => console.log(err))
 })
 
-//DETAILS
+//DETAILS & COMMENT
 
-router.get('/details/:id', (req, res) => {
+router.get('/details/:id', (req, res, next) => {
 
     const { id: place_id } = req.params
 
     Place
         .findById(place_id)
         .populate({
-            path: 'comments',
+            path: 'comments', populate: {
+                path: 'owner',
+                select: 'username'
+            }
         })
         .then((place) => {
 
@@ -81,18 +84,17 @@ router.get('/details/:id', (req, res) => {
                 isCreator: req.session.currentUser.role === 'CREATOR',
             })
         })
-        .catch(err => console.log(err))
-})
-
-router.get('details/comments/:id', isLoggedIn, (req, res, next) => {
-    const { id: place_id } = req.params
-
-    Place
-        .findByIdAndUpdate(place_id, { $addToSet: { comments: id } })
-        .then(() => res.redirect('/details/:id'))
         .catch(err => next(err))
 })
 
+// router.get('/details/comments/:id', isLoggedIn, (req, res, next) => {
+//     const { id: place_id } = req.params
+
+//     Place
+//         .findByIdAndUpdate(place_id, { $addToSet: { comments: id } })
+//         .then(() => res.redirect(`/details/${{ id }}`))
+//         .catch(err => next(err))
+// })
 
 
 //CREATE
@@ -101,7 +103,7 @@ router.get("/create", (req, res) => res.render('places/create', {
     isCreator: req.session.currentUser.role === 'CREATOR'
 }))
 
-router.post("/create", uploader.single('imageField'), (req, res) => {
+router.post("/create", uploader.single('imageField'), (req, res, next) => {
 
 
     const { name, description, type, rating, owner, latitude, longitude } = req.body
@@ -117,11 +119,11 @@ router.post("/create", uploader.single('imageField'), (req, res) => {
 
             res.redirect('/places/list')
         })
-        .catch(err => console.log(err))
+        .catch(err => next(err))
 })
 
 //Edit
-router.get('/:id/edit', checkRoles('ADMIN', 'CREATOR'), (req, res) => {
+router.get('/:id/edit', checkRoles('ADMIN', 'CREATOR'), (req, res, next) => {
 
     const { id: place_id } = req.params
 
@@ -134,10 +136,10 @@ router.get('/:id/edit', checkRoles('ADMIN', 'CREATOR'), (req, res) => {
                 isCreator: req.session.currentUser.role === 'CREATOR',
             })
         })
-        .catch(err => console.log(err))
+        .catch(err => next(err))
 })
 
-router.post('/:id/edit', (req, res) => {
+router.post('/:id/edit', (req, res, next) => {
 
     const { id: place_id } = req.params
 
@@ -151,19 +153,19 @@ router.post('/:id/edit', (req, res) => {
     Place
         .findByIdAndUpdate(place_id, { name, location, description, rating })
         .then(() => res.redirect(`/places/details/${place_id}`))
-        .catch(err => console.log(err))
+        .catch(err => next(err))
 })
 
 //Delete
 
-router.post('/:id/delete', (req, res) => {
+router.post('/:id/delete', (req, res, next) => {
 
     const { id: places_id } = req.params
 
     Place
         .findByIdAndDelete(places_id)
         .then(() => res.redirect('/places/list',))
-        .catch(err => consolel.log(err))
+        .catch(err => next(err))
 })
 
 

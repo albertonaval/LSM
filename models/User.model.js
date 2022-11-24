@@ -19,6 +19,7 @@ const userSchema = new Schema(
       type: String,
       required: true
     },
+
     role: {
       type: String,
       enum: ['USER', 'CREATOR', 'ADMIN'],
@@ -28,10 +29,6 @@ const userSchema = new Schema(
     imageUrl: {
       type: String,
     },
-    favorites: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Place'
-    }],
 
   },
   {
