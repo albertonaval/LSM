@@ -7,11 +7,11 @@
 
             <form action="/places/create" method="POST" enctype="multipart/form-data">
                 <div class="mb-3">
-                    <label for="name" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="name" name="name">
+                    <label for="name" class="form-label"></label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name">
                 </div>
                 <div class="mb-3">
-                    <label for="type" class="form-label">Tipo:</label>
+                    <label for="type" class="form-label"></label>
                     <select class="form-select" aria-label="Default select example" name="type">
                         <option selected>Clasifica tu creacion</option>
                         <option value="Disco">Discoteca</option>
@@ -21,8 +21,9 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="description" class="form-label">Descripción</label>
-                    <input type="text" class="form-control" id="description" name="description">
+                    <label for="description" class="form-label"></label>
+                    <input type="text" class="form-control" id="description" name="description"
+                        placeholder="Cuentanos que te parece">
                 </div>
                 <div class="mb-3">
                     <label for="rate" class="form-label">Puntuación</label>

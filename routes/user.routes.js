@@ -13,7 +13,6 @@ router.get("/profile", isLoggedIn, (req, res, next) => {
         })
         .catch(err => console.log(err))
 })
-
 router.get('/admin', isLoggedIn, checkRoles('ADMIN', 'CREATOR'), (req, res, next) => {
     res.render('admin-panel')
 })
