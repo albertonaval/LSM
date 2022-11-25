@@ -1,14 +1,15 @@
 <div class="container mt-3">
-    <h1 class="text-uppercase fw-bold font-monospace p-4 text-center">Discotecas</h1>
+    <h1 class="text-uppercase fw-bold font-monospace p-2 text-center">Clubs</h1>
+    <hr>
     <div class="container d-flex">
         <div class="row">
             {{#each discos}}
-            <div class="card bg-dark m-3 p-3" style="width: 18rem;">
+            <div class="card bg-dark m-3 p-3 border-bottom border-warning border-2" style="width: 18rem;">
                 <img src="{{imageUrl}}" class="card-img-top mt-3 card-img" alt="Fabrik">
                 <div class="card-body">
                     <h5 class="card-title text-light text-center">{{name}}</a></h5>
                     <a href="/places/details/{{id}}"
-                        class="btn btn-outline-light d-flex justify-content-center ">Detalles</a>
+                        class="btn btn-outline-light d-flex justify-content-center ">Details</a>
                 </div>
             </div>
             {{/each}}

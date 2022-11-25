@@ -1,32 +1,34 @@
 <div class="container mt-5">
-
-    <img src="{{imageUrl}}" class="img-fluid rounded-start" alt="{{name}}">
-    <figcaption>{{username}}</figcaption>
-
-    <h1>Perfil: {{username}}</h1>
-    <p>{{email}}</p>
-    {{#each favorites}}
-    <div class="container d-flex justify-content-center align-items-center cardDetails">
-        <div class="card text-center" style="max-width: 540px">
-            <div class="row g-0 align-items-center">
-                <div class="col-md-4">
-                    <figure>
-                        <img src={{imageUrl}} class="img-fluid rounded-start" alt="{{name}}">
-
-                    </figure>
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">{{name}}</h5>
-                        <p class="card-text">{{description}}</p>
-                        <p class="card-text">Rating: {{rating}}</p>
-                        <form action="/user/profile/favorites/{{_id}}" method="POST" style="display:inline">
-                            <input type="submit" value="Eliminar lugar" class="btn btn-danger">
-                        </form>
+    <div class="row">
+        <div class="col-4">
+            <img src="{{imageUrl}}" class="img-fluid rounded-start" alt="{{username}}">
+            <h1 class="text-uppercase fw-bold font-monospace p-2 text-start">{{username}}</h1>
+            <h3 class="fw-bold font-monospace p-2 text-start">{{email}}</h3>
+        </div>
+        <div class="col-8">
+            {{#each favorites}}
+            <div class="cardDetails">
+                <div class="card text-center bg-dark border-bottom border-warning border-2" style="max-width: 540px">
+                    <div class="row g-0 align-items-center">
+                        <div class="col-md-4">
+                            <figure>
+                                <img src={{imageUrl}} class="img-fluid rounded-start card-img p-2 m-2" alt="{{name}}">
+                            </figure>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{name}}</h5>
+                                <p class="card-text">{{description}}</p>
+                                <p class="card-text">Rating: {{rating}}</p>
+                                <form action="/user/profile/favorites/{{_id}}" method="POST" style="display:inline">
+                                    <input type="submit" value="Eliminar lugar" class="btn btn-danger">
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            {{/each}}
         </div>
-        {{/each}}
     </div>
 </div>
