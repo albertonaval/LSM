@@ -5,7 +5,7 @@ const madridCenter = {
 }
 
 let mainMap
-
+const Place = require('../models')
 function initMap() {
     renderMap()
     getLocation()
@@ -95,6 +95,7 @@ function getPlacesandSetMarkers(coords) {
         }))
         .catch(err => console.log(err))
 }
+
 
 function renderMap() {
 
