@@ -1,13 +1,13 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <h1 class="text-uppercase fw-bold font-monospace p-2 text-center">Editar {{place.name}}</h1>
+            <h1 class="text-uppercase fw-bold font-monospace p-2 text-center">Edit {{place.name}}</h1>
             <hr>
             <form action="/places/{{place._id}}/edit" method="POST">
                 <div class="row">
                     <div class="col">
                         <div class="mb-3">
-                            <label for="name" class="form-label">Nombre</label>
+                            <label for="name" class="form-label">Name</label>
                             <input type="text" class="form-control" id="name" name="name" value="{{place.name}}">
                         </div>
                     </div>
@@ -18,13 +18,13 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="description" class="form-label">Descripcion</label>
+                    <label for="description" class="form-label">Description</label>
                     <input type="text" class="form-control" id="description" name="description"
                         value="{{place.description}}">
                 </div>
 
                 <div class="row">
-                    <label for="coordinates" class="form-label">Coordenadas</label>
+                    <label for="coordinates" class="form-label">Coordinates</label>
                     <div class="mb-3 col-md-6">
                         <input type="text" class="form-control" id="latitude" name="latitude" placeholder="Latitud"
                             value="{{place.location.coordinates.[0]}}">
@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="d-grid mt-5">
-                    <button type="submit" class="btn btn-outline-dark btn-lg">Guardar edición</button>
+                    <button type="submit" class="btn btn-outline-dark btn-lg">Edit</button>
                 </div>
             </form>
         </div>
