@@ -1,38 +1,17 @@
-<div class="container mt-5">
-    <h1>Discotecas</h1>
-    <ul>
-        {{#each discos }}
-        <li> <a href="/places/details/{{id}}"> {{ name }} </a></li>
-        {{/each}}
-    </ul>
+<div class="container mt-3">
+    <h1 class="text-uppercase fw-bold font-monospace p-4 text-center">Discotecas</h1>
+    <div class="container d-flex">
+        <div class="row">
+            {{#each discos}}
+            <div class="card bg-dark m-3 p-3" style="width: 18rem;">
+                <img src="{{imageUrl}}" class="card-img-top mt-3 card-img" alt="Fabrik">
+                <div class="card-body">
+                    <h5 class="card-title text-light text-center">{{name}}</a></h5>
+                    <a href="/places/details/{{id}}"
+                        class="btn btn-outline-light d-flex justify-content-center ">Detalles</a>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
 </div>
-
-
-{{!-- <div class="card-group">
-    <div class="card">
-        <img src="" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                content. This content is a little bit longer.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-        </div>
-    </div>
-    <div class="card">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-        </div>
-    </div>
-    <div class="card">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                content. This card has even longer content than the first to show that equal height action.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-        </div>
-    </div>
-</div> --}}

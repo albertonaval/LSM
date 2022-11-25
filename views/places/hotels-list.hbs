@@ -1,8 +1,18 @@
-<div class="container mt-5">
-    <h1>Hoteles</h1>
-    <ul>
-        {{#each hotels }}
-        <li> <a href="/places/details/{{id}}"> {{ name }} </a></li>
-        {{/each}}
-    </ul>
+<div class="container mt-3">
+    <h1 class="text-uppercase fw-bold font-monospace p-2 text-center">Hotel</h1>
+    <hr>
+    <div class="container d-flex">
+        <div class="row">
+            {{#each hotels}}
+            <div class="card bg-dark m-3 p-3" style="width: 18rem;">
+                <img src="{{imageUrl}}" class="card-img-top mt-3 card-img" alt="{{name}}">
+                <div class="card-body">
+                    <h5 class="card-title text-light text-center">{{name}}</a></h5>
+                    <a href="/places/details/{{id}}"
+                        class="btn btn-outline-light d-flex justify-content-center mt-3">Detalles</a>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
 </div>

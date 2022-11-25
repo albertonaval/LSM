@@ -1,10 +1,31 @@
 body {
   font: sans-serif;
-  height: 100vh;
+  height: 80vh;
+  width: 100%;
+  background-color: #63868A;
+  color: whitesmoke;
+}
+
+.index {
+  height: 80vh;
+  width: 100%;
+  background-color: #63868A;
+  color: whitesmoke;
+}
+
+.navbar-nav>li>.dropdown-menu {
+  background-color: #63868A;
+  color: whitesmoke;
 }
 
 .cardDetails {
   height: 100vh;
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 #detailsMap {

@@ -1,8 +1,7 @@
 <div class="container mt-5">
-
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <h1>Editar {{place.name}}</h1>
+            <h1 class="text-uppercase fw-bold font-monospace p-2 text-center">Editar {{place.name}}</h1>
             <hr>
             <form action="/places/{{place._id}}/edit" method="POST">
                 <div class="row">
@@ -24,22 +23,21 @@
                         value="{{place.description}}">
                 </div>
 
-                <div class="mb-3">
+                <div class="row">
                     <label for="coordinates" class="form-label">Coordenadas</label>
-                    <input type="text" class="form-control" id="latitude" name="latitude" placeholder="Latitud"
-                        value="{{place.location.coordinates.[0]}}">
-                    <br>
-                    <input type="text" class="form-control" id="longitude" name="longitude" placeholder="Longitud"
-                        value="{{place.location.coordinates.[1]}}">
+                    <div class="mb-3 col-md-6">
+                        <input type="text" class="form-control" id="latitude" name="latitude" placeholder="Latitud"
+                            value="{{place.location.coordinates.[0]}}">
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <input type="text" class="form-control" id="longitude" name="longitude" placeholder="Longitud"
+                            value="{{place.location.coordinates.[1]}}">
+                    </div>
                 </div>
-
                 <div class="d-grid mt-5">
-                    <button type="submit" class="btn btn-dark btn-lg">Guardar edición</button>
+                    <button type="submit" class="btn btn-outline-dark btn-lg">Guardar edición</button>
                 </div>
             </form>
         </div>
     </div>
-</div>
-
-
 </div>
