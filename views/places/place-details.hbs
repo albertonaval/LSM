@@ -23,9 +23,12 @@
                     {{/each}}
 
 
-                    <a href="/reviews/create/{{place._id}}" class="btn btn-dark">Añadir un Comentario</a>
+                    <a href="/reviews/create/{{place._id}}" class="btn btn-dark">Add a comment</a>
+                    {{#if isCreator }}
+                    <a href="/places/{{place._id}}/edit" class="btn btn-warning">Edit</a>
+                    {{/if}}
                     {{#if isAdmin }}
-                    <a href="/places/{{place._id}}/edit" class="btn btn-warning">Editar</a>
+                    <a href="/places/{{place._id}}/edit" class="btn btn-warning">Edit</a>
                     <form action="/places/{{place._id}}/delete" method="POST" style="display:inline">
                         <input type="submit" value="Eliminar lugar" class="btn btn-danger">
                     </form>
@@ -33,8 +36,8 @@
 
 
 
-                    <a href="/" class="btn btn-dark">Volver al inicio</a>
-                    <a href="/user/profile/favorites/{{place._id}}" class="btn btn-dark">Añadir a mi lista</a>
+                    <a href="/" class="btn btn-dark">Home</a>
+                    <a href="/user/profile/favorites/{{place._id}}" class="btn btn-dark">Add to list</a>
                 </div>
             </div>
         </div>
